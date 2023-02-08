@@ -4,12 +4,14 @@ import 'package:flutter/widgets.dart';
 import 'package:splashscreen/splashscreen.dart';
 
 class SplashScr extends StatelessWidget {
+   static const String idScreen = "splashScreen";
+
   @override
   Widget build(BuildContext context) {
     return SplashScreen(
       seconds: 4,
-      navigateAfterSeconds: new LoginScreen(),
-      image: new Image.asset('assets/images/logo.png'),
+      navigateAfterSeconds: LoginScreen(),
+      image: Image.asset('assets/images/logo.png'),
       photoSize: 150.0,
       backgroundColor: const Color(0xFFFFEFC7),
     );
