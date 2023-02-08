@@ -1,4 +1,6 @@
+import 'package:coffe_shop_app/screens/home_screen.dart';
 import 'package:coffe_shop_app/screens/register_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -17,7 +19,30 @@ class _LoginScreenState extends State<LoginScreen> {
   bool emailError = false;
   String loginErrorMessage = "test";
 
-  void _signIn(){}
+  Future _signIn() async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text, 
+        password: _passwordController.text)
+        .then((value) {
+          print("User signed in");
+          Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+        });
+    } on FirebaseAuthException catch (e){
+        print("ERROR HERE");
+        print(e.message);
+        loginFail = true;
+        loginErrorMessage = e.message!;
+
+        if(loginErrorMessage == "There is no user record corresponding to this identifier. The user may have been deleted."){
+          emailError = true;
+          loginErrorMessage = "User does not exist, please create an account";
+        }else {
+          passwordError = true;
+          loginErrorMessage = "Incorrect password";
+        }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

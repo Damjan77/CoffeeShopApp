@@ -1,4 +1,8 @@
+import 'package:coffe_shop_app/screens/home_screen.dart';
 import 'package:coffe_shop_app/screens/login_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -12,8 +16,31 @@ class _RegisterScreenState extends State<RegisterScreen>{
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
 
-  void _signUp(){}
+
+ Future _signUp() async{
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailController.text, 
+        password: passwordController.text)
+        .then((value) {
+          print("Created new account");
+          final FirebaseAuth auth = FirebaseAuth.instance;
+          final User? user = auth.currentUser;
+          final uid = user?.uid;
+
+          FirebaseFirestore.instance.collection("Users").doc(uid).set({
+            'uid': uid,
+            'address': addressController.text
+          });
+          Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+        });
+    } on FirebaseAuthException catch (e){
+        print("ERROR HERE");
+        print(e.message);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +66,7 @@ class _RegisterScreenState extends State<RegisterScreen>{
               SizedBox(height: 20),
               TextField(
                 controller: passwordController,
-                textInputAction: TextInputAction.done,
+                textInputAction: TextInputAction.next,
                 decoration: InputDecoration(
                   labelText: "Password",
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(30.0))),
@@ -47,12 +74,11 @@ class _RegisterScreenState extends State<RegisterScreen>{
               ),
               SizedBox(height: 20),
               TextField(
-                controller: passwordController,
+                controller: addressController,
                 textInputAction: TextInputAction.done,
                 decoration: InputDecoration(
                   labelText: "Address",
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(30.0))),
-                obscureText: true,
               ),
               SizedBox(height: 20),
               ElevatedButton.icon(
