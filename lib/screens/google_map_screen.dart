@@ -64,7 +64,7 @@ class _MapScreenState extends State<MapScreen> {
       ),
       // on pressing floating action button the camera will take to user current location
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton( //Ova kopce prenasocuva kon HomeScreen
         backgroundColor: Colors.white,
         onPressed: () async{
           Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
