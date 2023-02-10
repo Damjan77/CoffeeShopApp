@@ -1,3 +1,5 @@
+import 'package:coffe_shop_app/screens/google_map_screen.dart';
+import 'package:coffe_shop_app/screens/home_screen.dart';
 import 'package:coffe_shop_app/screens/login_screen.dart';
 import 'package:coffe_shop_app/screens/register_screen.dart';
 import 'package:coffe_shop_app/screens/splashscreen.dart';
@@ -22,11 +24,13 @@ class MyApp extends StatelessWidget {
           primary: const Color(0xFF7B5B36),
         ),
       ),
-      initialRoute: SplashScr.idScreen,
+      initialRoute: MapScreen.idScreen,
       routes: {
         SplashScr.idScreen:(context) => SplashScr(),
         LoginScreen.idScreen:(context) => LoginScreen(),
         RegisterScreen.idScreen:(context) => RegisterScreen(),
+        HomeScreen.idScreen:(context) => HomeScreen(),
+        MapScreen.idScreen:(context) => MapScreen(),
       },
     );
   }
