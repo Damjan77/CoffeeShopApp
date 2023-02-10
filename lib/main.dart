@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           primary: const Color(0xFF7B5B36),
         ),
       ),
-      initialRoute: MapScreen.idScreen,
+      initialRoute: SplashScr.idScreen,
       routes: {
         SplashScr.idScreen:(context) => SplashScr(),
         LoginScreen.idScreen:(context) => LoginScreen(),
