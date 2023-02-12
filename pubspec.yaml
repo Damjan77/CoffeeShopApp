@@ -31,6 +31,7 @@ environment:
 dependencies:
 
   cupertino_icons: ^1.0.2
+  qr_flutter: ^4.0.0
   splashscreen: 
   firebase_core: ^2.4.0
   firebase_auth: ^4.2.1
@@ -60,6 +61,10 @@ flutter:
     - assets/images/logo.png
     - assets/images/logo-cropped.png
     - assets/images/iced-coffee.png
+    - assets/images/espresso.png
+    - assets/images/affogato.png
+    - assets/images/cappuccino.png
+    - assets/images/machiato.png
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

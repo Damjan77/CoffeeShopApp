@@ -35,7 +35,6 @@ class _MapScreenState extends State<MapScreen> {
     return await Geolocator.getCurrentPosition();
   }
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +61,6 @@ class _MapScreenState extends State<MapScreen> {
           ),
         ),
       ),
-      // on pressing floating action button the camera will take to user current location
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: FloatingActionButton( //Ova kopce prenasocuva kon HomeScreen
         backgroundColor: Colors.white,

@@ -4,9 +4,12 @@ import 'package:coffe_shop_app/model/coffee.dart';
 import 'package:coffe_shop_app/screens/cart_screen.dart';
 import 'package:coffe_shop_app/screens/google_map_screen.dart';
 import 'package:coffe_shop_app/screens/login_screen.dart';
+import 'package:coffe_shop_app/screens/profile_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'info_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String idScreen = "homeScreen";
@@ -24,13 +27,13 @@ class _HomeScreenState extends State<HomeScreen> {
   void _populateCoffees() {
     var list = <Coffee>[
       Coffee(
-          name: 'Espresso', price: 60, image: 'assets/images/iced-coffee.png'),
+          name: 'Espresso', price: 60, image: 'assets/images/espresso.png'),
       Coffee(
-          name: 'Macchiato', price: 60, image: 'assets/images/iced-coffee.png'),
+          name: 'Macchiato', price: 60, image: 'assets/images/machiato.png'),
       Coffee(
           name: 'Cappuccino',
           price: 80,
-          image: 'assets/images/iced-coffee.png'),
+          image: 'assets/images/cappuccino.png'),
       Coffee(
           name: 'Iced Coffee',
           price: 100,
@@ -38,9 +41,9 @@ class _HomeScreenState extends State<HomeScreen> {
       Coffee(
           name: 'Double Espresso',
           price: 100,
-          image: 'assets/images/iced-coffee.png'),
+          image: 'assets/images/espresso.png'),
       Coffee(
-          name: 'Affogato', price: 90, image: 'assets/images/iced-coffee.png'),
+          name: 'Affogato', price: 90, image: 'assets/images/affogato.png'),
     ];
 
     setState(() {
@@ -89,8 +92,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: _selectedIndex == -1 ? Colors.grey[700] : Color(0xFF7B5B36),
-        unselectedItemColor: Colors.grey[700],
+        backgroundColor: Color(0xFFFFEFC7),
+        selectedItemColor: _selectedIndex == -1 ? Color(0xFF7B5B36) : Colors.grey[700],
+        unselectedItemColor: Color(0xFF7B5B36),
         currentIndex: _selectedIndex == -1 ? 0 : _selectedIndex,
 
         items: const <BottomNavigationBarItem>[
@@ -114,13 +118,11 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
         onTap: (index) {
           if(index == 0) {
-            // TODO: create UserProfileScreen
-            //  Navigator.of(context).push(MaterialPageRoute(builder: (context) => UserProfileScreen(),));
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileScreen(),));
           } else if(index == 1){
              Navigator.of(context).push(MaterialPageRoute(builder: (context) => MapScreen(),));
           } else if(index == 2){
-            // TODO: create InfoScreen
-            //  Navigator.of(context).push(MaterialPageRoute(builder: (context) => InfoScreen(),));
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => InfoScreen(),));
           } else {
             _signOut();
           }
@@ -205,10 +207,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     Text(
                       item.name,
                       textAlign: TextAlign.center,
-                      // style: Theme.of(context).textTheme.subtitle1,
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      item.price.toString() + 'MKD',
+                      item.price.toString() + ' MKD',
                       textAlign: TextAlign.center,
                     )
                   ],
