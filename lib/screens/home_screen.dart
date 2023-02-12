@@ -118,12 +118,10 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
         onTap: (index) {
           if(index == 0) {
-            // TODO: create UserProfileScreen
             Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileScreen(),));
           } else if(index == 1){
              Navigator.of(context).push(MaterialPageRoute(builder: (context) => MapScreen(),));
           } else if(index == 2){
-            // TODO: create InfoScreen
             Navigator.of(context).push(MaterialPageRoute(builder: (context) => InfoScreen(),));
           } else {
             _signOut();
