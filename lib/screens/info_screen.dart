@@ -24,7 +24,7 @@ class _InfoState extends State<InfoScreen> {
         centerTitle: true,
       ),
 
-      //  body:
+      //body:
 
     );
   }

@@ -33,12 +33,17 @@ class _CartState extends State<CartScreen> {
               var item = _cart[index];
               return Card(
                   color: Color.fromRGBO(225, 166, 107, 100),
+                  clipBehavior: Clip.hardEdge,
                   elevation: 4.0,
                   child: ListTile(
                     leading: Image.asset(
                       item.image,
                     ),
                     title: Text(item.name),
+                    onTap: (){
+                      debugPrint('Card tapped.');
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderScreen(),));
+                    },
                     trailing: GestureDetector(
                         child: Icon(
                           Icons.remove,
