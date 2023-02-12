@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:coffe_shop_app/model/CoffeeShop.dart';
+import 'package:coffe_shop_app/model/Location.dart';
 import 'package:coffe_shop_app/model/coffee.dart';
 import 'package:coffe_shop_app/screens/cart_screen.dart';
 import 'package:coffe_shop_app/screens/google_map_screen.dart';
@@ -23,6 +25,15 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = -1;
   List<Coffee> _coffees = <Coffee>[];
   List<Coffee> _cartList = <Coffee>[];
+
+
+  List<CoffeeShop> shops = [
+    CoffeeShop(shopName: "Kratovo coffee Shop",location: Location(latitude: 42.078050, longitude: 22.181713)),
+    CoffeeShop(shopName: "Kavadarci coffee Shop", location: Location(latitude:  41.433081, longitude: 22.006034)),
+    CoffeeShop(shopName: "Bitola coffee Shop", location: Location(latitude: 41.031556, longitude: 21.352376)),
+    CoffeeShop(shopName: "Skopje coffee Shop", location: Location(latitude: 42.004906, longitude: 21.409890)),
+  ];
+
 
   void _populateCoffees() {
     var list = <Coffee>[
@@ -120,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
           if(index == 0) {
             Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileScreen(),));
           } else if(index == 1){
-             Navigator.of(context).push(MaterialPageRoute(builder: (context) => MapScreen(),));
+             Navigator.of(context).push(MaterialPageRoute(builder: (context) => MapScreen(shops),));
           } else if(index == 2){
             Navigator.of(context).push(MaterialPageRoute(builder: (context) => InfoScreen(),));
           } else {
