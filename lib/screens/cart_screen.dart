@@ -36,9 +36,9 @@ class _CartState extends State<CartScreen> {
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
             // TODO: implement OrderSuccessfullScreen
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => OrderSuccessfullScreen(),
-            ));
+            // Navigator.of(context).push(MaterialPageRoute(
+            //   builder: (context) => OrderSuccessfullScreen(),
+            // ));
           },
           backgroundColor: Color.fromRGBO(225, 166, 107, 100),
           label: Text("CHECKOUT"),
