@@ -13,50 +13,125 @@ class CartScreen extends StatefulWidget {
 
 class _CartState extends State<CartScreen> {
   _CartState(this._cart);
-
+  double total = 0;
   List<Coffee> _cart;
+
+  void _updateTotal() {
+    total = 0;
+    for (int i = 0; i < _cart.length; i++) {
+      total += _cart[i].price;
+    }
+    //print("TOTAL " + total.toString());
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _updateTotal();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Image.asset(
-          'assets/images/logo-cropped.png',
-          fit: BoxFit.contain,
-          height: 60,
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            // TODO: implement OrderSuccessfullScreen
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => OrderSuccessfullScreen(),
+            ));
+          },
+          backgroundColor: Color.fromRGBO(225, 166, 107, 100),
+          label: Text("CHECKOUT"),
+          icon: Icon(Icons.shopping_cart_checkout),
         ),
-        centerTitle: true,
-      ),
-      body: ListView.builder(
-            itemCount: _cart.length,
-            itemBuilder: (context, index) {
-              var item = _cart[index];
-              return Card(
-                  color: Color.fromRGBO(225, 166, 107, 100),
-                  clipBehavior: Clip.hardEdge,
-                  elevation: 4.0,
-                  child: ListTile(
-                    leading: Image.asset(
-                      item.image,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        appBar: AppBar(
+          title: Image.asset(
+            'assets/images/logo-cropped.png',
+            fit: BoxFit.contain,
+            height: 60,
+          ),
+          centerTitle: true,
+        ),
+        body: Column(children: [
+          _cart.isEmpty
+              ? Padding(
+                  padding: EdgeInsets.only(top: 20, right: 5),
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: const Text(
+                      "Your cart is currently empty!",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey,
+                        fontSize: 20,
+                      ),
                     ),
-                    title: Text(item.name),
-                    onTap: (){
-                      debugPrint('Card tapped.');
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderScreen(),));
-                    },
-                    trailing: GestureDetector(
-                        child: Icon(
-                          Icons.remove,
-                          color: Colors.white,
+                  ))
+              : Column(
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Text(
+                        "CLICK ON YOUR COFFEE TO EDIT IT",
+                        style: TextStyle(
+                          color: Color(0xFF7B5B36),
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
                         ),
-                        onTap: () {
-                          setState(() {
-                            _cart.remove(item);
-                          });
+                      ),
+                    ),
+                    ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        itemCount: _cart.length,
+                        itemBuilder: (context, index) {
+                          var item = _cart[index];
+                          return Card(
+                            color: Color.fromRGBO(225, 166, 107, 100),
+                            clipBehavior: Clip.hardEdge,
+                            elevation: 4.0,
+                            child: ListTile(
+                              leading: Image.asset(
+                                item.image,
+                              ),
+                              title: Text(item.name),
+                              subtitle: Text(item.price.toString() + " MKD"),
+                              onTap: () {
+                                debugPrint('Card tapped.');
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => OrderScreen(),
+                                ));
+                              },
+                              trailing: GestureDetector(
+                                  child: Icon(
+                                    Icons.remove,
+                                    color: Colors.white,
+                                  ),
+                                  onTap: () {
+                                    setState(() {
+                                      _cart.remove(item);
+                                      _updateTotal();
+                                    });
+                                  }),
+                            ),
+                          );
                         }),
-                  ),
-              );
-            }),
-    );
+                    Padding(
+                        padding: EdgeInsets.only(top: 10, right: 5),
+                        child: Container(
+                          alignment: Alignment.bottomRight,
+                          child: Text(
+                            "TOTAL: " + total.toString() + " MKD",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF7B5B36),
+                              fontSize: 20,
+                            ),
+                          ),
+                        ))
+                  ],
+                )
+        ]));
   }
 }
