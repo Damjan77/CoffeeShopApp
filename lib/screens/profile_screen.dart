@@ -1,5 +1,6 @@
 import 'package:coffe_shop_app/model/coffee.dart';
 import 'package:coffe_shop_app/screens/cart_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -13,10 +14,12 @@ class _ProfileState extends State<ProfileScreen> {
   _ProfileState();
 
   final List<Coffee> _cartList = <Coffee>[];
+  var currentUser = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFFCF5C9),
       appBar: AppBar(
         title: Image.asset(
           'assets/images/logo-cropped.png',
@@ -63,16 +66,16 @@ class _ProfileState extends State<ProfileScreen> {
               ))
         ],
       ),
-      body: Column(children: const <Widget>[
+      body: Column(children: <Widget>[
         ColoredBox(
-          color:Color(0xFF7B5B36),
+          color:const Color(0xFF7B5B36),
           child: SizedBox(
           width: double.infinity,
           height: 50,
           child: Center(
             child: Text(
-            'Welcome back, User',
-            style: TextStyle(
+            'Welcome back ${currentUser!.email}',
+            style: const TextStyle(
                 color: Color.fromARGB(255, 237, 234, 231),
                 fontWeight: FontWeight.bold,
                 fontSize: 20),
@@ -80,7 +83,7 @@ class _ProfileState extends State<ProfileScreen> {
           ),
         ),
         ),
-        ColoredBox(
+        const ColoredBox(
           color:Color(0xFF7B5B36),
           child: SizedBox(
           width: double.infinity,
@@ -91,11 +94,29 @@ class _ProfileState extends State<ProfileScreen> {
             style: TextStyle(
                 color: Color.fromARGB(255, 237, 234, 231),
                 fontWeight: FontWeight.bold,
-                fontSize: 16),
+                fontSize: 16,
+              ),
             ),
           ),
         ),
         ),
+        const SizedBox(
+          height: 30,
+        ),
+        const Text(
+          'Email',
+          style: TextStyle(
+            fontSize: 16
+          ),
+        ),
+              TextField(
+                textInputAction: TextInputAction.done,
+                decoration: InputDecoration(
+                  hintText: currentUser!.email.toString(),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(30.0))
+                ),
+                obscureText: true,
+              ),
       ]
       )
     );
