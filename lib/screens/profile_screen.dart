@@ -132,7 +132,7 @@ class _ProfileState extends State<ProfileScreen> {
             obscureText: true,
           ),
           const SizedBox(
-            height: 350,
+            height: 300,
           ),
           ElevatedButton.icon(
             style: ElevatedButton.styleFrom(
