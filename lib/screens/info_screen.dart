@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
+import '../custom/custom_app_bar.dart';
+
 class InfoScreen extends StatefulWidget {
   const InfoScreen({super.key});
 
@@ -17,13 +19,7 @@ class _InfoState extends State<InfoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFFCF5C9),
-      appBar: AppBar(
-        title: Image.asset(
-          'assets/images/logo-cropped.png',
-          fit: BoxFit.contain,
-          height: 60,
-        ),
-        centerTitle: true,
+      appBar: CustomAppBar(appBar: AppBar(),
       ),
       body: Container(
           alignment: Alignment.center,

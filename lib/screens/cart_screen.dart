@@ -2,6 +2,9 @@ import 'package:coffe_shop_app/model/coffee.dart';
 import 'package:coffe_shop_app/screens/order_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../custom/custom_app_bar.dart';
+import 'order_successfull_screen.dart';
+
 class CartScreen extends StatefulWidget {
   final List<Coffee> _cart;
 
@@ -45,13 +48,8 @@ class _CartState extends State<CartScreen> {
           icon: Icon(Icons.shopping_cart_checkout),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        appBar: AppBar(
-          title: Image.asset(
-            'assets/images/logo-cropped.png',
-            fit: BoxFit.contain,
-            height: 60,
-          ),
-          centerTitle: true,
+        appBar: CustomAppBar(appBar: AppBar(),
+          // title: Text("Find our location"),
         ),
         body: Column(children: [
           _cart.isEmpty

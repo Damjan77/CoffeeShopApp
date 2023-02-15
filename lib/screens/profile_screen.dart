@@ -1,3 +1,4 @@
+import 'package:coffe_shop_app/custom/custom_app_bar.dart';
 import 'package:coffe_shop_app/model/coffee.dart';
 import 'package:coffe_shop_app/screens/cart_screen.dart';
 import 'package:coffe_shop_app/screens/login_screen.dart';
@@ -34,52 +35,9 @@ class _ProfileState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFFCF5C9),
-      appBar: AppBar(
-        title: Image.asset(
-          'assets/images/logo-cropped.png',
-          fit: BoxFit.contain,
-          height: 60,
+        appBar: CustomAppBar(appBar: AppBar(),
+          // title: Text("Find our location"),
         ),
-        centerTitle: true,
-        actions: <Widget>[
-          Padding(
-              padding: const EdgeInsets.only(right: 16.0, top: 12.0),
-              child: GestureDetector(
-                child: Stack(
-                  alignment: Alignment.topCenter,
-                  children: <Widget>[
-                    const Icon(
-                      Icons.shopping_cart,
-                      size: 30.0,
-                    ),
-                    if (_cartList.isNotEmpty)
-                      Padding(
-                        padding: const EdgeInsets.only(left: 2.0),
-                        child: CircleAvatar(
-                          radius: 8.0,
-                          backgroundColor: Colors.red,
-                          foregroundColor: Colors.white,
-                          child: Text(
-                            _cartList.length.toString(),
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12.0,
-                            ),
-                          ),
-                        ),
-                      ),
-                  ],
-                ),
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => CartScreen(_cartList),
-                    ),
-                  );
-                },
-              ))
-        ],
-      ),
       body: Column(children: <Widget>[
         const ColoredBox(
           color:Color(0xFF7B5B36),
@@ -132,7 +90,7 @@ class _ProfileState extends State<ProfileScreen> {
             obscureText: true,
           ),
           const SizedBox(
-            height: 300,
+            height: 260,
           ),
           ElevatedButton.icon(
             style: ElevatedButton.styleFrom(

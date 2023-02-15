@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../custom/custom_app_bar.dart';
+
 class OrderScreen extends StatefulWidget {
 
   OrderScreen();
@@ -15,13 +17,8 @@ class _OrderState extends State<OrderScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Image.asset(
-          'assets/images/logo-cropped.png',
-          fit: BoxFit.contain,
-          height: 60,
-        ),
-        centerTitle: true,
+      appBar: CustomAppBar(appBar: AppBar(),
+        // title: Text("Find our location"),
       ),
 
     //  body:

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import '../custom/custom_app_bar.dart';
 
 class MapScreen extends StatefulWidget{
   static const String idScreen = "mapScreen";
@@ -104,13 +105,11 @@ class _MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        // on below line we have given title of app
-        title: Text("Find our location"),
+      appBar: CustomAppBar(appBar: AppBar(),
+        // title: Text("Find our location"),
       ),
       body: Container(
         child: SafeArea(
-          // on below line creating google maps
           child: GoogleMap(
             // on below line setting camera position
             initialCameraPosition: _kGoogle,
