@@ -35,8 +35,28 @@ class _ProfileState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFFCF5C9),
-        appBar: CustomAppBar(appBar: AppBar(),
-          // title: Text("Find our location"),
+        appBar: CustomAppBar(appBar: AppBar(), widgets: [
+          // Padding(
+          //     padding: const EdgeInsets.only(right: 16.0, top: 12.0),
+          //     child: GestureDetector(
+          //       child: Stack(
+          //         alignment: Alignment.topCenter,
+          //         children: <Widget>[
+          //           Icon(
+          //             Icons.account_circle,
+          //             size: 30.0,
+          //           ),
+          //         ],
+          //       ),
+          //       onTap: () {
+          //         Navigator.of(context).push(
+          //           MaterialPageRoute(
+          //             builder: (context) => ProfileScreen(),
+          //           ),
+          //         );
+          //       },
+          //     ))
+        ],
         ),
       body: Column(children: <Widget>[
         const ColoredBox(

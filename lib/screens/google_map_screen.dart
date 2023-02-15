@@ -1,14 +1,16 @@
 import 'dart:async';
 import 'package:coffe_shop_app/model/CoffeeShop.dart';
+import 'package:coffe_shop_app/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../custom/custom_app_bar.dart';
 
-class MapScreen extends StatefulWidget{
+class MapScreen extends StatefulWidget {
   static const String idScreen = "mapScreen";
   final List<CoffeeShop> shops;
+
   MapScreen(this.shops);
 
   @override
@@ -16,13 +18,14 @@ class MapScreen extends StatefulWidget{
 }
 
 class _MapScreenState extends State<MapScreen> {
-
   Completer<GoogleMapController> _controller = Completer();
   final List<Marker> markers = <Marker>[];
   List<CoffeeShop> shops;
+
   _MapScreenState(this.shops);
+
   Map<PolylineId, Polyline> polylines = {};
-  
+
   // on below line we have specified camera position
   static final CameraPosition _kGoogle = const CameraPosition(
     target: LatLng(42.00478491557928, 21.40917442067392),
@@ -36,36 +39,41 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   void _createMarkersForShops(shops) {
-    for(var i=0; i<shops.length; i++) {
+    for (var i = 0; i < shops.length; i++) {
       markers.add(Marker(
           markerId: MarkerId(i.toString()),
-          position: LatLng(shops[i].location.latitude, shops[i].location.longitude),
+          position:
+              LatLng(shops[i].location.latitude, shops[i].location.longitude),
           infoWindow: InfoWindow(
             title: shops[i].shopName,
           ),
           icon: BitmapDescriptor.defaultMarker,
-          onTap: (){
+          onTap: () {
             getUserCurrentLocation().then((userLocation) async {
-              LatLng destinationLocationCoordinates = LatLng(shops[i].location.latitude, shops[i].location.longitude);
-              LatLng userLocationCoordinates = LatLng(userLocation.latitude, userLocation.longitude);
-              _findTheShortestRoute(userLocationCoordinates, destinationLocationCoordinates);
+              LatLng destinationLocationCoordinates = LatLng(
+                  shops[i].location.latitude, shops[i].location.longitude);
+              LatLng userLocationCoordinates =
+                  LatLng(userLocation.latitude, userLocation.longitude);
+              _findTheShortestRoute(
+                  userLocationCoordinates, destinationLocationCoordinates);
             });
-          }
-      ));
+          }));
     }
     print("Number of markers created: " + markers.length.toString());
   }
 
   Future<Position> getUserCurrentLocation() async {
-    await Geolocator.requestPermission().then((value){
-    }).onError((error, stackTrace) async {
+    await Geolocator.requestPermission()
+        .then((value) {})
+        .onError((error, stackTrace) async {
       await Geolocator.requestPermission();
-      print("ERROR"+error.toString());
+      print("ERROR" + error.toString());
     });
     return await Geolocator.getCurrentPosition();
   }
 
-  void _findTheShortestRoute(LatLng userLocation, LatLng destinationLocation) async{
+  void _findTheShortestRoute(
+      LatLng userLocation, LatLng destinationLocation) async {
     print("Finding shortest route for Coffe shop ");
     PolylinePoints polylinePoints = PolylinePoints();
     String googleAPI = 'AIzaSyBiZLHiNQAaMde8Eb2hWoHKA3hj_T6RBMY';
@@ -104,8 +112,30 @@ class _MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(appBar: AppBar(),
-        // title: Text("Find our location"),
+      appBar: CustomAppBar(
+        appBar: AppBar(),
+        widgets: [
+          Padding(
+              padding: const EdgeInsets.only(right: 16.0, top: 30.0),
+              child: GestureDetector(
+                child: Stack(
+                  alignment: Alignment.topCenter,
+                  children: <Widget>[
+                    Icon(
+                      Icons.account_circle,
+                      size: 30.0,
+                    ),
+                  ],
+                ),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => ProfileScreen(),
+                    ),
+                  );
+                },
+              ))
+        ],
       ),
       body: Container(
         child: SafeArea(
@@ -117,11 +147,11 @@ class _MapScreenState extends State<MapScreen> {
             // on below line specifying map type.
             mapType: MapType.normal,
             // on below line setting user location enabled.
-            myLocationEnabled: true,
+            myLocationEnabled: false,
             // on below line setting compass enabled.
             compassEnabled: true,
             // on below line specifying controller on map complete.
-            onMapCreated: (GoogleMapController controller){
+            onMapCreated: (GoogleMapController controller) {
               _controller.complete(controller);
             },
           ),
@@ -130,9 +160,9 @@ class _MapScreenState extends State<MapScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.white,
-        onPressed: () async{
+        onPressed: () async {
           getUserCurrentLocation().then((value) async {
-            print(value.latitude.toString() +" "+value.longitude.toString());
+            print(value.latitude.toString() + " " + value.longitude.toString());
 
             CameraPosition cameraPosition = new CameraPosition(
               target: LatLng(value.latitude, value.longitude),
@@ -140,12 +170,15 @@ class _MapScreenState extends State<MapScreen> {
             );
 
             final GoogleMapController controller = await _controller.future;
-            controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
-            setState(() {
-            });
+            controller
+                .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+            setState(() {});
           });
         },
-        child: Icon(Icons.my_location_sharp, color: Colors.black,),
+        child: Icon(
+          Icons.my_location_sharp,
+          color: Colors.black,
+        ),
       ),
     );
   }

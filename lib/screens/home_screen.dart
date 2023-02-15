@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:coffe_shop_app/custom/custom_app_bar.dart';
 import 'package:coffe_shop_app/model/CoffeeShop.dart';
 import 'package:coffe_shop_app/model/Location.dart';
 import 'package:coffe_shop_app/model/coffee.dart';
@@ -139,16 +140,11 @@ class _HomeScreenState extends State<HomeScreen> {
           }
         },
       ),
-      appBar: AppBar(
-        title: Image.asset(
-          'assets/images/logo-cropped.png',
-          fit: BoxFit.contain,
-          height: 60,
-        ),
-        centerTitle: true,
-        actions: <Widget>[
+      appBar: CustomAppBar(
+        appBar: AppBar(),
+        widgets: <Widget>[
           Padding(
-              padding: const EdgeInsets.only(right: 16.0, top: 12.0),
+              padding: const EdgeInsets.only(right: 16.0, top: 33.0),
               child: GestureDetector(
                 child: Stack(
                   alignment: Alignment.topCenter,
