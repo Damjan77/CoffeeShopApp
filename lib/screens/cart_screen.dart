@@ -1,5 +1,6 @@
 import 'package:coffe_shop_app/model/coffee.dart';
 import 'package:coffe_shop_app/screens/order_screen.dart';
+import 'package:coffe_shop_app/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../custom/custom_app_bar.dart';
@@ -48,8 +49,28 @@ class _CartState extends State<CartScreen> {
           icon: Icon(Icons.shopping_cart_checkout),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        appBar: CustomAppBar(appBar: AppBar(),
-          // title: Text("Find our location"),
+        appBar: CustomAppBar(appBar: AppBar(), widgets: [
+          Padding(
+              padding: const EdgeInsets.only(right: 16.0, top: 30.0),
+              child: GestureDetector(
+                child: Stack(
+                  alignment: Alignment.topCenter,
+                  children: <Widget>[
+                    Icon(
+                      Icons.account_circle,
+                      size: 30.0,
+                    ),
+                  ],
+                ),
+                onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => ProfileScreen(),
+                      ),
+                    );
+                },
+              ))
+        ],
         ),
         body: Column(children: [
           _cart.isEmpty

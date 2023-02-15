@@ -1,3 +1,4 @@
+import 'package:coffe_shop_app/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
@@ -19,11 +20,31 @@ class _InfoState extends State<InfoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFFCF5C9),
-      appBar: CustomAppBar(appBar: AppBar(),
+      appBar: CustomAppBar(appBar: AppBar(), widgets: [
+        Padding(
+            padding: const EdgeInsets.only(right: 16.0, top: 30.0),
+            child: GestureDetector(
+              child: Stack(
+                alignment: Alignment.topCenter,
+                children: <Widget>[
+                  Icon(
+                    Icons.account_circle,
+                    size: 30.0,
+                  ),
+                ],
+              ),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => ProfileScreen(),
+                  ),
+                );
+              },
+            ))
+      ],
       ),
       body: Container(
           alignment: Alignment.center,
-          //decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
           child: Padding(
               padding: EdgeInsets.fromLTRB(
                   20, MediaQuery.of(context).size.height * 0.07, 20, 0),
