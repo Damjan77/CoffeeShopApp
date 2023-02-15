@@ -55,7 +55,6 @@ class _MapScreenState extends State<MapScreen> {
     print("Number of markers created: " + markers.length.toString());
   }
 
-
   Future<Position> getUserCurrentLocation() async {
     await Geolocator.requestPermission().then((value){
     }).onError((error, stackTrace) async {
@@ -68,13 +67,13 @@ class _MapScreenState extends State<MapScreen> {
   void _findTheShortestRoute(LatLng userLocation, LatLng destinationLocation) async{
     print("Finding shortest route for Coffe shop ");
     PolylinePoints polylinePoints = PolylinePoints();
-    String googleAPI = 'AIzaSyAVdAlhV1OVRX-W2RCjyjBUUf841sK3auA';
+    String googleAPI = 'AIzaSyBiZLHiNQAaMde8Eb2hWoHKA3hj_T6RBMY';
 
     addPolyLine(List<LatLng> polylineCoordinates) {
       PolylineId id = PolylineId("poly");
       Polyline polyline = Polyline(
         polylineId: id,
-        color: Colors.deepOrange,
+        color: Colors.red,
         points: polylineCoordinates,
         width: 8,
       );
