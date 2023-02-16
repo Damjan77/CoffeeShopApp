@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:coffe_shop_app/model/coffee.dart';
 import 'package:flutter/material.dart';
 import '../custom/custom_app_bar.dart';
-import 'cart_screen.dart';
 
 class OrderScreen extends StatefulWidget {
   final Coffee _item;
@@ -62,8 +61,20 @@ class _OrderState extends State<OrderScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(20, 40, 0, 0),
+              padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
               child: Column(children: <Widget>[
+                Image.asset(  
+                  _item.image,
+                  height: 150,
+                ),
+                Text(
+                  _item.name,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 50),
                 Row(
                   children: <Widget>[
                     const Expanded(
@@ -104,6 +115,7 @@ class _OrderState extends State<OrderScreen> {
                     ),
                   ],
                 ),
+                const SizedBox(height: 20),
                 Row(
                   children: <Widget>[
                     const Expanded(
@@ -131,6 +143,7 @@ class _OrderState extends State<OrderScreen> {
                     ),
                   ],
                 ),
+                const SizedBox(height: 20),
                 Row(
                   children: <Widget>[
                     const Expanded(
