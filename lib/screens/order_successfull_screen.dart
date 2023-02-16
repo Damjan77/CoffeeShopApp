@@ -15,15 +15,21 @@ class _OrderSuccessfullScreenState extends State<OrderSuccessfullScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Image.asset(
-          'assets/images/logo-cropped.png',
-          fit: BoxFit.contain,
-          height: 60,
-        ),
-        centerTitle: true,
-      ),
-      body: Container()
+      appBar: null,
+      backgroundColor: const Color(0xFFFCF5C9),
+      body: Container(
+        child: Center(
+         child: Text(
+            'Your order was successful!',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+              color: Colors.green[400]
+            ),
+          ), 
+        )
+      )
     );
   }
 
