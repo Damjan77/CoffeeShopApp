@@ -119,7 +119,7 @@ class _CartState extends State<CartScreen> {
                               onTap: () {
                                 debugPrint('Card tapped.');
                                 Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => OrderScreen(),
+                                  builder: (context) => OrderScreen(item),
                                 ));
                               },
                               trailing: GestureDetector(

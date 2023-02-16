@@ -80,7 +80,8 @@ class _ProfileState extends State<ProfileScreen> {
                   style: TextStyle(
                       color: Color(0xFF7B5B36),
                       fontWeight: FontWeight.bold,
-                      fontSize: 25),
+                      fontSize: 25
+                    ),
                 ),
               ),
             ),
