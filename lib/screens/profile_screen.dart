@@ -1,6 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coffe_shop_app/custom/custom_app_bar.dart';
 import 'package:coffe_shop_app/model/coffee.dart';
-import 'package:coffe_shop_app/screens/cart_screen.dart';
 import 'package:coffe_shop_app/screens/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -14,11 +14,18 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileState extends State<ProfileScreen> {
   _ProfileState();
+  late String userAddress = '';
 
   final List<Coffee> _cartList = <Coffee>[];
   var currentUser = FirebaseAuth.instance.currentUser;
 
-    Future _signOut() async {
+  @override
+  void initState() {
+    super.initState();
+    getUserAddress();
+  }
+
+  Future _signOut() async {
     try {
       await FirebaseAuth.instance.signOut().then((value) {
         print("User signed out");
@@ -31,103 +38,118 @@ class _ProfileState extends State<ProfileScreen> {
     }
   }
 
+  // for getting user address
+  Future getUserAddress() async {
+    await FirebaseFirestore.instance
+        .collection("Users")
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get()
+        .then((snapshot) async {
+      if (snapshot.exists) {
+        setState(() {
+          userAddress = snapshot.data()!["address"];
+          print(userAddress);
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFCF5C9),
-        appBar: CustomAppBar(appBar: AppBar(), widgets: [
-          // Padding(
-          //     padding: const EdgeInsets.only(right: 16.0, top: 12.0),
-          //     child: GestureDetector(
-          //       child: Stack(
-          //         alignment: Alignment.topCenter,
-          //         children: <Widget>[
-          //           Icon(
-          //             Icons.account_circle,
-          //             size: 30.0,
-          //           ),
-          //         ],
-          //       ),
-          //       onTap: () {
-          //         Navigator.of(context).push(
-          //           MaterialPageRoute(
-          //             builder: (context) => ProfileScreen(),
-          //           ),
-          //         );
-          //       },
-          //     ))
-        ],
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: _signOut,
+          backgroundColor: Color(0xFF7B5B36),
+          label: Text("LOGOUT"),
+          icon: Icon(Icons.logout_rounded),
         ),
-      body: Column(children: <Widget>[
-        const ColoredBox(
-          color:Color(0xFF7B5B36),
-          child: SizedBox(
-          width: double.infinity,
-          height: 50,
-          child: Center(
-            child: Text(
-            'Welcome back!',
-            style: TextStyle(
-                color: Color.fromARGB(255, 237, 234, 231),
-                fontWeight: FontWeight.bold,
-                fontSize: 20),
-            ),
-          ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        backgroundColor: const Color(0xFFFCF5C9),
+        appBar: CustomAppBar(
+          appBar: AppBar(),
+          widgets: [],
         ),
-        ),
-        const ColoredBox(
-          color:Color(0xFF7B5B36),
-          child: SizedBox(
-          width: double.infinity,
-          height: 50,
-          child: Center(
-            child: Text(
-            'Here is your profile data:',
-            style: TextStyle(
-                color: Color.fromARGB(255, 237, 234, 231),
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
+        body: SingleChildScrollView(
+          child: Column(children: <Widget>[
+            const SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: Center(
+                child: Text(
+                  'Welcome back!',
+                  style: TextStyle(
+                      color: Color(0xFF7B5B36),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25),
+                ),
               ),
             ),
-          ),
-        ),
-        ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(50, 20, 50, 20),
-          child: Column(children: <Widget>[
-          const Text(
-            'Email',
-            style: TextStyle(
-              fontSize: 16
+            const SizedBox(
+              width: double.infinity,
+              height: 20,
+              child: Center(
+                child: Text(
+                  'Here is your profile data:',
+                  style: TextStyle(
+                    color: Color(0xFF7B5B36),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
             ),
-          ),
-          TextField(
-            textInputAction: TextInputAction.done,
-            decoration: InputDecoration(
-              hintText: currentUser!.email.toString(),
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(30.0))
-            ),
-            obscureText: true,
-          ),
-          const SizedBox(
-            height: 260,
-          ),
-          ElevatedButton.icon(
-            style: ElevatedButton.styleFrom(
-              minimumSize: const Size.fromHeight(50),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0)
-              )
-            ),
-            label: const Text("Log Out", style: TextStyle(fontSize: 24),),
-            icon: const Icon(Icons.logout, size: 25,),
-            onPressed: _signOut,
-            ),    
-          ]
-          ),
-        )    
-      ]
-      )
-    );
+            Padding(
+              padding: const EdgeInsets.fromLTRB(50, 20, 50, 20),
+              child: Column(children: <Widget>[
+                Container(
+                  alignment: Alignment.topLeft,
+                  child: const Padding(
+                      padding: EdgeInsets.only(left: 20),
+                      child: Text(
+                        'Email',
+                        style: TextStyle(
+                          fontSize: 16,
+                        ),
+                      )),
+                ),
+                IgnorePointer(
+                  child: TextField(
+                    textInputAction: TextInputAction.done,
+                    decoration: InputDecoration(
+                        hintText: currentUser!.email.toString(),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30.0))),
+                    obscureText: true,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Container(
+                  alignment: Alignment.topLeft,
+                  child: const Padding(
+                      padding: EdgeInsets.only(left: 20),
+                      child: Text(
+                        'Address',
+                        style: TextStyle(
+                          fontSize: 16,
+                        ),
+                      )),
+                ),
+                IgnorePointer(
+                  child: TextField(
+                    textInputAction: TextInputAction.done,
+                    decoration: InputDecoration(
+                        hintText: userAddress,
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30.0))),
+                    obscureText: true,
+                  ),
+                ),
+                const SizedBox(
+                  height: 260,
+                ),
+              ]),
+            )
+          ]),
+        ));
   }
 }
