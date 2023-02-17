@@ -1,6 +1,7 @@
+import 'package:camera/camera.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coffe_shop_app/custom/custom_app_bar.dart';
-import 'package:coffe_shop_app/model/coffee.dart';
+import 'package:coffe_shop_app/screens/camera_page.dart';
 import 'package:coffe_shop_app/screens/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,6 @@ class _ProfileState extends State<ProfileScreen> {
   _ProfileState();
   late String userAddress = '';
 
-  final List<Coffee> _cartList = <Coffee>[];
   var currentUser = FirebaseAuth.instance.currentUser;
 
   @override
@@ -57,13 +57,33 @@ class _ProfileState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: _signOut,
-          backgroundColor: Color(0xFF7B5B36),
-          label: Text("LOGOUT"),
-          icon: Icon(Icons.logout_rounded),
-        ),
+
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: Container(
+          padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              FloatingActionButton.extended(
+                onPressed: () async {
+                  await availableCameras().then((value) => Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => CameraPage(cameras: value))));
+                },
+                backgroundColor: Color(0xFF7B5B36),
+                //extendedPadding: EdgeInsetsDirectional.only(start: 16.0, end: 20.0),
+                label: Text("Take a picture"),
+              ),
+              FloatingActionButton.extended(
+                onPressed: _signOut,
+                backgroundColor: Color(0xFF7B5B36),
+                label: Text("LOGOUT"),
+                icon: Icon(Icons.logout_rounded),
+              ),
+            ],
+          ),
+        ),
+
+        //floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         backgroundColor: const Color(0xFFFCF5C9),
         appBar: CustomAppBar(
           appBar: AppBar(),
