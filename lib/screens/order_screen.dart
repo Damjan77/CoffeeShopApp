@@ -40,12 +40,12 @@ class _OrderState extends State<OrderScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
-        appBar: AppBar(),
-        widgets: const <Widget>[],
-      ),
-      backgroundColor: const Color(0xFFFCF5C9),
-      body: SingleChildScrollView(
+        appBar: CustomAppBar(
+          appBar: AppBar(),
+          widgets: const <Widget>[],
+        ),
+        backgroundColor: const Color(0xFFFCF5C9),
+        body: SingleChildScrollView(
           child: Column(children: <Widget>[
             const SizedBox(
               width: double.infinity,
@@ -63,7 +63,7 @@ class _OrderState extends State<OrderScreen> {
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
               child: Column(children: <Widget>[
-                Image.asset(  
+                Image.asset(
                   _item.image,
                   height: 150,
                 ),
@@ -82,10 +82,9 @@ class _OrderState extends State<OrderScreen> {
                         'Sugar',
                         textAlign: TextAlign.left,
                         style: TextStyle(
-                          color: Color(0xFF7B5B36),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25
-                        ),
+                            color: Color(0xFF7B5B36),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25),
                       ),
                     ),
                     Expanded(
@@ -93,10 +92,9 @@ class _OrderState extends State<OrderScreen> {
                         _sugarQuantity.toString(),
                         textAlign: TextAlign.center,
                         style: const TextStyle(
-                          color: Color(0xFF7B5B36),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25
-                        ),
+                            color: Color(0xFF7B5B36),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25),
                       ),
                     ),
                     Expanded(
@@ -123,20 +121,19 @@ class _OrderState extends State<OrderScreen> {
                         'Milk',
                         textAlign: TextAlign.left,
                         style: TextStyle(
-                          color: Color(0xFF7B5B36),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25
-                        ),
+                            color: Color(0xFF7B5B36),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25),
                       ),
                     ),
                     Expanded(
                       child: Switch(
-                      value: _hasMilk,
-                      activeColor: const Color(0xFF7B5B36),
-                      onChanged: (bool value) {
-                        toggleMilk();
-                      },
-                    ),
+                        value: _hasMilk,
+                        activeColor: const Color(0xFF7B5B36),
+                        onChanged: (bool value) {
+                          toggleMilk();
+                        },
+                      ),
                     ),
                     const Expanded(
                       child: Text(''),
@@ -151,10 +148,9 @@ class _OrderState extends State<OrderScreen> {
                         'Total',
                         textAlign: TextAlign.left,
                         style: TextStyle(
-                          color: Color(0xFF7B5B36),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25
-                        ),
+                            color: Color(0xFF7B5B36),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25),
                       ),
                     ),
                     Expanded(
@@ -162,23 +158,35 @@ class _OrderState extends State<OrderScreen> {
                         '${_item.price} MKD',
                         textAlign: TextAlign.center,
                         style: const TextStyle(
-                          color: Color(0xFF7B5B36),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25
-                        ),
+                            color: Color(0xFF7B5B36),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25),
                       ),
                     ),
                     const Expanded(
-                      child: Text(
-                        ''
-                      ),
+                      child: Text(''),
                     ),
                   ],
                 ),
+                const SizedBox(height: 60),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(70, 0, 70, 0),
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          minimumSize: const Size.fromHeight(50),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0))),
+                      child: const Text(
+                        "Done",
+                        style: TextStyle(fontSize: 24),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      }),
+                )
               ]),
             )
           ]),
-        )
-      );
+        ));
   }
 }
