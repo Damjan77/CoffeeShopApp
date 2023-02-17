@@ -1,3 +1,4 @@
+import 'package:coffe_shop_app/screens/camera_screen.dart';
 import 'package:coffe_shop_app/screens/home_screen.dart';
 import 'package:coffe_shop_app/screens/login_screen.dart';
 import 'package:coffe_shop_app/screens/register_screen.dart';
@@ -30,6 +31,8 @@ class MyApp extends StatelessWidget {
         RegisterScreen.idScreen:(context) => RegisterScreen(),
         HomeScreen.idScreen:(context) => HomeScreen(),
         //MapScreen.idScreen:(context) => MapScreen(),
+        CameraScreen.idScreen:(context) => CameraScreen(),
+
       },
     );
   }
