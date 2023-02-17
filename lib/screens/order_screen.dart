@@ -21,9 +21,16 @@ class _OrderState extends State<OrderScreen> {
   int _sugarQuantity = 0;
 
   void increaseSugarQuantity() {
-    log(_sugarQuantity.toString());
     setState(() {
       _sugarQuantity += 1;
+    });
+  }
+
+  void decreaseSugarQuantity() {
+    setState(() {
+      if (_sugarQuantity > 0) {
+        _sugarQuantity -= 1;
+      }
     });
   }
 
@@ -90,7 +97,7 @@ class _OrderState extends State<OrderScreen> {
                     Expanded(
                       child: Text(
                         _sugarQuantity.toString(),
-                        textAlign: TextAlign.center,
+                        textAlign: TextAlign.right,
                         style: const TextStyle(
                             color: Color(0xFF7B5B36),
                             fontWeight: FontWeight.bold,
@@ -107,6 +114,21 @@ class _OrderState extends State<OrderScreen> {
                           ),
                           onTap: () {
                             increaseSugarQuantity();
+                          },
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: GestureDetector(
+                          child: const Icon(
+                            Icons.remove_circle,
+                            size: 30,
+                            color: Color(0xFF7B5B36),
+                          ),
+                          onTap: () {
+                            decreaseSugarQuantity();
                           },
                         ),
                       ),
