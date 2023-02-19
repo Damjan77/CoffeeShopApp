@@ -17,29 +17,27 @@ class _OrderState extends State<OrderScreen> {
   _OrderState(this._item);
 
   final Coffee _item;
-  bool _hasMilk = false;
-  int _sugarQuantity = 0;
 
   void increaseSugarQuantity() {
     setState(() {
-      _sugarQuantity += 1;
+      _item.sugar += 1;
     });
   }
 
   void decreaseSugarQuantity() {
     setState(() {
-      if (_sugarQuantity > 0) {
-        _sugarQuantity -= 1;
+      if (_item.sugar > 0) {
+        _item.sugar -= 1;
       }
     });
   }
 
   void toggleMilk() {
     setState(() {
-      if (_hasMilk) {
-        _hasMilk = false;
+      if (_item.milk) {
+        _item.milk = false;
       } else {
-        _hasMilk = true;
+        _item.milk = true;
       }
     });
   }
@@ -50,6 +48,12 @@ class _OrderState extends State<OrderScreen> {
         appBar: CustomAppBar(
           appBar: AppBar(),
           widgets: const <Widget>[],
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed:  () { Navigator.pop(context); },
+          backgroundColor: const Color(0xFF7B5B36),
+          label: const Text("Done"),
         ),
         backgroundColor: const Color(0xFFFCF5C9),
         body: SingleChildScrollView(
@@ -95,32 +99,8 @@ class _OrderState extends State<OrderScreen> {
                       ),
                     ),
                     Expanded(
-                      child: Text(
-                        _sugarQuantity.toString(),
-                        textAlign: TextAlign.right,
-                        style: const TextStyle(
-                            color: Color(0xFF7B5B36),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 25),
-                      ),
-                    ),
-                    Expanded(
-                      child: SizedBox(
-                        child: GestureDetector(
-                          child: const Icon(
-                            Icons.add_circle,
-                            size: 30,
-                            color: Color(0xFF7B5B36),
-                          ),
-                          onTap: () {
-                            increaseSugarQuantity();
-                          },
-                        ),
-                      ),
-                    ),
-                    Expanded(
                       child: Align(
-                        alignment: Alignment.centerLeft,
+                        alignment: Alignment.centerRight,
                         child: GestureDetector(
                           child: const Icon(
                             Icons.remove_circle,
@@ -129,6 +109,31 @@ class _OrderState extends State<OrderScreen> {
                           ),
                           onTap: () {
                             decreaseSugarQuantity();
+                          },
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        _item.sugar.toString(),
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            color: Color(0xFF7B5B36),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25),
+                      ),
+                    ),
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: GestureDetector(
+                          child: const Icon(
+                            Icons.add_circle,
+                            size: 30,
+                            color: Color(0xFF7B5B36),
+                          ),
+                          onTap: () {
+                            increaseSugarQuantity();
                           },
                         ),
                       ),
@@ -150,7 +155,7 @@ class _OrderState extends State<OrderScreen> {
                     ),
                     Expanded(
                       child: Switch(
-                        value: _hasMilk,
+                        value: _item.milk,
                         activeColor: const Color(0xFF7B5B36),
                         onChanged: (bool value) {
                           toggleMilk();
@@ -190,22 +195,6 @@ class _OrderState extends State<OrderScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 60),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(70, 0, 70, 0),
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          minimumSize: const Size.fromHeight(50),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0))),
-                      child: const Text(
-                        "Done",
-                        style: TextStyle(fontSize: 24),
-                      ),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      }),
-                )
               ]),
             )
           ]),
