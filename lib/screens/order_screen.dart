@@ -53,7 +53,8 @@ class _OrderState extends State<OrderScreen> {
         floatingActionButton: FloatingActionButton.extended(
           onPressed:  () { Navigator.pop(context); },
           backgroundColor: const Color(0xFF7B5B36),
-          label: const Text("Done"),
+          label: const Text("DONE"),
+          icon: Icon(Icons.done),
         ),
         backgroundColor: const Color(0xFFFCF5C9),
         body: SingleChildScrollView(
