@@ -1,7 +1,6 @@
-import 'package:camera/camera.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:coffe_shop_app/camera/preview_page.dart';
 import 'package:coffe_shop_app/custom/custom_app_bar.dart';
-import 'package:coffe_shop_app/screens/camera_page.dart';
 import 'package:coffe_shop_app/screens/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +14,8 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileState extends State<ProfileScreen> {
   _ProfileState();
-  late String userAddress = '';
 
+  late String userAddress = '';
   var currentUser = FirebaseAuth.instance.currentUser;
 
   @override
@@ -38,7 +37,6 @@ class _ProfileState extends State<ProfileScreen> {
     }
   }
 
-  // for getting user address
   Future getUserAddress() async {
     await FirebaseFirestore.instance
         .collection("Users")
@@ -57,33 +55,35 @@ class _ProfileState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: Container(
-          padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              FloatingActionButton.extended(
-                onPressed: () async {
-                  await availableCameras().then((value) => Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => CameraPage(cameras: value))));
+        floatingActionButton: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 0.0),
+              child: FloatingActionButton.extended(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(
+                          builder: (_) => PreviewPage()));
                 },
                 backgroundColor: Color(0xFF7B5B36),
-                //extendedPadding: EdgeInsetsDirectional.only(start: 16.0, end: 20.0),
-                label: Text("Take a picture"),
+                label: Text("OPEN IMAGE GALLERY"),
+                icon: Icon(Icons.camera),
               ),
-              FloatingActionButton.extended(
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: FloatingActionButton.extended(
                 onPressed: _signOut,
-                backgroundColor: Color(0xFF7B5B36),
+                backgroundColor: const Color(0xFF7B5B36),
                 label: Text("LOGOUT"),
                 icon: Icon(Icons.logout_rounded),
               ),
-            ],
-          ),
+            )
+          ],
         ),
 
-        //floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         backgroundColor: const Color(0xFFFCF5C9),
         appBar: CustomAppBar(
           appBar: AppBar(),
@@ -100,8 +100,7 @@ class _ProfileState extends State<ProfileScreen> {
                   style: TextStyle(
                       color: Color(0xFF7B5B36),
                       fontWeight: FontWeight.bold,
-                      fontSize: 25
-                    ),
+                      fontSize: 25),
                 ),
               ),
             ),
@@ -170,7 +169,9 @@ class _ProfileState extends State<ProfileScreen> {
                 ),
               ]),
             )
-          ]),
-        ));
+          ]
+          ),
+        )
+    );
   }
 }

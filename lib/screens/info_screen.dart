@@ -5,7 +5,7 @@ import 'package:qr_flutter/qr_flutter.dart';
 import '../custom/custom_app_bar.dart';
 
 class InfoScreen extends StatefulWidget {
-  const InfoScreen({super.key});
+  const InfoScreen();
 
   @override
   _InfoState createState() => _InfoState();
@@ -69,7 +69,7 @@ class _InfoState extends State<InfoScreen> {
                 ),
                 SizedBox(height: 50),
                 const Text(
-                  "Check out more info on the types of coffee we deliver and order your favorite",
+                  "Share more info on the types of coffee you can order, with your firends!",
                   style: TextStyle(
                       color: Color(0xFF9D622B),
                       fontWeight: FontWeight.bold,
