@@ -39,6 +39,23 @@ class _RegisterScreenState extends State<RegisterScreen>{
     } on FirebaseAuthException catch (e){
         print("ERROR HERE");
         print(e.message);
+
+        showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text("Error"),
+              content: Text("All fields are required."),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+              actions: <Widget>[
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context, rootNavigator: true).pop();
+                  },
+                  child: Text("OK"),
+                )
+              ],
+            )
+        );
     }
   }
 
