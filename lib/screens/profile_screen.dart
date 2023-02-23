@@ -62,6 +62,7 @@ class _ProfileState extends State<ProfileScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 0.0),
               child: FloatingActionButton.extended(
+                heroTag: 'btn1',
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(
@@ -75,6 +76,7 @@ class _ProfileState extends State<ProfileScreen> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: FloatingActionButton.extended(
+                heroTag: 'btn2',
                 onPressed: _signOut,
                 backgroundColor: const Color(0xFF7B5B36),
                 label: Text("LOGOUT"),

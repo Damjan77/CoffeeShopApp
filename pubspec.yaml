@@ -44,6 +44,7 @@ dependencies:
   google_directions_api: ^0.9.1
 
   image_picker: ^0.8.6+2
+  file_picker: ^5.2.5
 
   flutter:
     sdk: flutter
