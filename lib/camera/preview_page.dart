@@ -3,9 +3,7 @@ import 'package:coffe_shop_app/custom/custom_app_bar.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:file_picker/file_picker.dart';
 import './storage_service.dart';
-import 'dart:io';
 import 'dart:math';
 
 class PreviewPage extends StatefulWidget {
@@ -27,28 +25,28 @@ class _PreviewPageState extends State<PreviewPage> {
     _loadImages();
   }
 
-  String generateRandomString(int lengthOfString){
+  String generateRandomString(int lengthOfString) {
     final random = Random();
-    const allChars='AaBbCcDdlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1EeFfGgHhIiJjKkL234567890';
-    final randomString = List.generate(lengthOfString, 
-                          (index) => allChars[random.nextInt(allChars.length)]).join();
-    return randomString;    // return the generated string
-}
+    const allChars =
+        'AaBbCcDdlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1EeFfGgHhIiJjKkL234567890';
+    final randomString = List.generate(lengthOfString,
+        (index) => allChars[random.nextInt(allChars.length)]).join();
+    return randomString; // return the generated string
+  }
 
   getImage(ImageSource source) async {
     imageFile = await ImagePicker().pickImage(source: source);
 
-    if(imageFile == null) {
+    if (imageFile == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("No file selected.")
-        ),
+        const SnackBar(content: Text("No file selected.")),
       );
       return null;
     }
 
     final path = imageFile!.path;
     final fileName = generateRandomString(5);
-    
+
     storage.uploadFile(path, fileName).then((value) => print('Done'));
   }
 
@@ -56,7 +54,8 @@ class _PreviewPageState extends State<PreviewPage> {
     print("Loading images...");
     List<Map<String, dynamic>> files = [];
 
-    final ListResult result = await FirebaseStorage.instance.ref('images').list();
+    final ListResult result =
+        await FirebaseStorage.instance.ref('images').list();
     final List<Reference> allFiles = result.items;
 
     await Future.forEach<Reference>(allFiles, (file) async {
@@ -86,7 +85,7 @@ class _PreviewPageState extends State<PreviewPage> {
                       Navigator.of(context).pop();
                     },
                   ),
-                  Padding(padding: EdgeInsets.all(8.0)),
+                  Padding(padding: EdgeInsets.all(10.0)),
                   GestureDetector(
                     child: Text("Camera"),
                     onTap: () {
@@ -105,17 +104,14 @@ class _PreviewPageState extends State<PreviewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-        floatingActionButton: Padding(
-          padding: const EdgeInsets.all(5.0),
-          child: FloatingActionButton(
+        floatingActionButton: FloatingActionButton.extended(
             onPressed: () {
               _showDialog(context);
             },
+            label: const Text("Share & get sale!"),
             backgroundColor: const Color(0xFF7B5B36),
-            child: Icon(Icons.camera_alt),
-            foregroundColor: Colors.white,
-          ),
-        ),
+            icon: Icon(Icons.camera_alt),
+            foregroundColor: Colors.white),
         appBar: CustomAppBar(
           appBar: AppBar(),
           widgets: [],
@@ -126,32 +122,36 @@ class _PreviewPageState extends State<PreviewPage> {
             children: [
               Expanded(
                 child: FutureBuilder(
-                future: _loadImages(),
-                builder: (context,
-                    AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done &&
-                      snapshot.hasData) {
-                    return GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2),
-                      itemCount: snapshot.data?.length ?? 0,
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                            padding: EdgeInsets.all(5),
-                            child: Container(
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image: NetworkImage(
-                                            snapshot.data![index]['url']),
-                                        fit: BoxFit.cover))));
-                      },
-                    );
-                  } else {
-                    return const SizedBox.shrink();
-                  }},
-              ),)
+                  future: _loadImages(),
+                  builder: (context,
+                      AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
+                    if (snapshot.connectionState == ConnectionState.done &&
+                        snapshot.hasData) {
+                      return GridView.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2),
+                        itemCount: snapshot.data?.length ?? 0,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                              padding: EdgeInsets.all(5),
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(10)),
+                                      image: DecorationImage(
+                                          image: NetworkImage(
+                                              snapshot.data![index]['url']),
+                                          fit: BoxFit.cover))));
+                        },
+                      );
+                    } else {
+                      return const SizedBox.shrink();
+                    }
+                  },
+                ),
+              )
             ],
           ),
         ));
