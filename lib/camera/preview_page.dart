@@ -14,10 +14,8 @@ class PreviewPage extends StatefulWidget {
 }
 
 class _PreviewPageState extends State<PreviewPage> {
-  // File? photo;
   XFile? imageFile;
   final Storage storage = Storage();
-  late final images;
 
   @override
   void initState() {

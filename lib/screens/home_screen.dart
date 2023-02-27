@@ -181,6 +181,15 @@ class _HomeScreenState extends State<HomeScreen> {
           appBar: AppBar(),
           widgets: <Widget>[
             Padding(
+                padding: const EdgeInsets.only(right: 23.0, top: 5.0),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => PreviewPage()));
+                  },
+                  child: Icon(Icons.photo_library),
+                )),
+            Padding(
                 padding: const EdgeInsets.only(right: 16.0, top: 33.0),
                 child: GestureDetector(
                   child: Stack(
@@ -218,15 +227,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     }
                   },
                 )),
-            Padding(
-                padding: const EdgeInsets.only(right: 23.0, top: 5.0),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => PreviewPage()));
-                  },
-                  child: Icon(Icons.photo_library),
-                ))
           ],
         ),
         body: _createBody());
