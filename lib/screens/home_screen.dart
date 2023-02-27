@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:coffe_shop_app/camera/preview_page.dart';
 import 'package:coffe_shop_app/custom/custom_app_bar.dart';
 import 'package:coffe_shop_app/model/CoffeeShop.dart';
 import 'package:coffe_shop_app/model/Location.dart';
@@ -94,7 +95,6 @@ class _HomeScreenState extends State<HomeScreen> {
     getUserAddress();
   }
 
-// for getting user address
   Future getUserAddress() async {
     await FirebaseFirestore.instance
         .collection("Users")
@@ -217,6 +217,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       );
                     }
                   },
+                )),
+            Padding(
+                padding: const EdgeInsets.only(right: 23.0, top: 5.0),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => PreviewPage()));
+                  },
+                  child: Icon(Icons.photo_library),
                 ))
           ],
         ),
