@@ -92,22 +92,6 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _populateCoffees();
-    getUserAddress();
-  }
-
-  Future getUserAddress() async {
-    await FirebaseFirestore.instance
-        .collection("Users")
-        .doc(FirebaseAuth.instance.currentUser!.uid)
-        .get()
-        .then((snapshot) async {
-      if (snapshot.exists) {
-        setState(() {
-          userAddress = snapshot.data()!["address"];
-          print(userAddress);
-        });
-      }
-    });
   }
 
   Future _signOut() async {
