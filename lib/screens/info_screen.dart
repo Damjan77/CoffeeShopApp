@@ -56,26 +56,17 @@ class _InfoState extends State<InfoScreen> {
                       fontWeight: FontWeight.bold,
                       fontSize: 40),
                 ),
-                SizedBox(height: 40),
-                QrImage(
-                  data:
-                      "https://yourcoffeeandtea.com/different-types-of-coffee/?fbclid=IwAR0tVe1EJTRCvCgdz7DPp-oCbHTkufNFVCqrgFlaiTFbi0ZjTw69-cB2BjI",
-                  size: 250,
-                  gapless: true,
-                  version: QrVersions.auto,
-                  foregroundColor: const Color(0xFF7B5B36),
-                  backgroundColor: const Color(0xFFFFFFFF),
-                  eyeStyle: const QrEyeStyle(eyeShape: QrEyeShape.circle),
-                ),
-                SizedBox(height: 50),
-                const Text(
-                  "Share more info on the types of coffee you can order, with your firends!",
-                  style: TextStyle(
-                      color: Color(0xFF9D622B),
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20),
-                  textAlign: TextAlign.center,
-                ),
+                // SizedBox(height: 40),
+                // QrImage(
+                //   data:
+                //       "https://yourcoffeeandtea.com/different-types-of-coffee/?fbclid=IwAR0tVe1EJTRCvCgdz7DPp-oCbHTkufNFVCqrgFlaiTFbi0ZjTw69-cB2BjI",
+                //   size: 250,
+                //   gapless: true,
+                //   version: QrVersions.auto,
+                //   foregroundColor: const Color(0xFF7B5B36),
+                //   backgroundColor: const Color(0xFFFFFFFF),
+                //   eyeStyle: const QrEyeStyle(eyeShape: QrEyeShape.circle),
+                // ),
               ]))),
     );
   }
