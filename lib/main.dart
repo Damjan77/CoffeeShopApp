@@ -3,6 +3,7 @@ import 'package:coffe_shop_app/screens/home_screen.dart';
 import 'package:coffe_shop_app/screens/login_screen.dart';
 import 'package:coffe_shop_app/screens/register_screen.dart';
 import 'package:coffe_shop_app/screens/splashscreen.dart';
+import 'package:coffe_shop_app/services/nearby_places_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         RegisterScreen.idScreen:(context) => RegisterScreen(),
         HomeScreen.idScreen:(context) => HomeScreen(),
         PreviewPage.idScreen:(context) => PreviewPage(),
+        NearByPlacesScreen.idScreen:(context) => NearByPlacesScreen(),
       },
     );
   }

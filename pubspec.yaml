@@ -42,6 +42,7 @@ dependencies:
   geocoding: ^2.0.5
   flutter_polyline_points: ^1.0.0
   google_directions_api: ^0.9.1
+  flutter_google_places: 0.2.3
 
   image_picker: ^0.8.6+2
   file_picker: ^5.2.5
