@@ -41,13 +41,6 @@ class _OrderSuccessfullScreenState extends State<OrderSuccessfullScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-          Container(
-            child: Icon(
-              Icons.celebration_rounded,
-              size: 60,
-              color: Colors.green,
-            ),
-          ),
           Align(
             child: Text(
               'Your order was successful!',
