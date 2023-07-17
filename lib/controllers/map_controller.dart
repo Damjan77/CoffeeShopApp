@@ -21,7 +21,7 @@ class MapController extends GetxController {
         ///data successfully
         var result = jsonDecode(response.body);
         log(result.toString());
-        mapModel.addAll(RxList<Map<String, dynamic>>.from(result)
+        mapModel.addAll(RxList<Map<String, dynamic>>.from(result["results"])
             .map((e) => MapModel.fromJson(e))
             .toList());
       } else {

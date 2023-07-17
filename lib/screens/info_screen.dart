@@ -28,10 +28,9 @@ class _InfoState extends State<InfoScreen> {
         child: Obx(
             () => mapController.mapModel.isNotEmpty
                 ? GoogleMap(
-                initialCameraPosition: CameraPosition(
-                  target: LatLng(mapController.mapModel.first.latitude,
-                  mapController.mapModel.first.longitude),
-                  zoom: 14,
+                initialCameraPosition: const CameraPosition(
+                  target: LatLng(42.00478491557928, 21.40917442067392),
+                  zoom: 14.4746,
                 ),
               markers: mapController.markers,
             ) : Center(
