@@ -15,7 +15,7 @@ class MapController extends GetxController {
     try {
       isLoading(true);
       http.Response response = await http.get(Uri.tryParse(
-          'https://maps.googleapis.com/maps/api/js?key=AIzaSyBiZLHiNQAaMde8Eb2hWoHKA3hj_T6RBMY'
+          'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=42.00478491557928,21.40917442067392&radius=1000&types=cafe&key=AIzaSyDzS5EdV9zNC08WSitS09Jw-YD_s7Fs398'
       )!);
       if (response.statusCode == 200) {
         ///data successfully
