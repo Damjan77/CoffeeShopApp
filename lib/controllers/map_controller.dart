@@ -39,10 +39,10 @@ class MapController extends GetxController {
   createMarkers(){
     mapModel.forEach((element){
       markers.add(Marker(
-        markerId: MarkerId(element.id.toString()),
+        markerId: MarkerId(element.placeId.toString()),
         icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
-        position: LatLng(element.latitude, element.longitude),
-        infoWindow: InfoWindow(title: element.name, snippet: element.city),
+        position: LatLng(element.geometry.location.lat, element.geometry.location.lng),
+        infoWindow: InfoWindow(title: element.name, snippet: element.vicinity),
         onTap: () {
           print('market tapped');
         },
