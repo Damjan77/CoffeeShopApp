@@ -19,6 +19,19 @@ class _InfoState extends State<InfoScreen> {
   void initState(){
     super.initState();
     mapController.fetchLocations();
+    addCustomIcon();
+  }
+
+  void addCustomIcon() {
+    BitmapDescriptor.fromAssetImage(
+        const ImageConfiguration(), "assets/images/logo-cropped.png")
+        .then(
+          (icon) {
+        setState(() {
+          MapController().markerIcon = icon;
+        });
+      },
+    );
   }
 
   @override

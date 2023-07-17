@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:coffe_shop_app/screens/info_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:coffe_shop_app/model/map_model.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -11,11 +13,13 @@ class MapController extends GetxController {
   var markers = RxSet<Marker>();
   var isLoading = false.obs;
 
+  BitmapDescriptor markerIcon = BitmapDescriptor.defaultMarker;
+
   fetchLocations() async {
     try {
       isLoading(true);
       http.Response response = await http.get(Uri.tryParse(
-          'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=42.00478491557928,21.40917442067392&radius=1000&types=cafe&key=AIzaSyDzS5EdV9zNC08WSitS09Jw-YD_s7Fs398'
+          'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=42.00478491557928,21.40917442067392&radius=3000&types=cafe&keyword=specialty&key=AIzaSyDzS5EdV9zNC08WSitS09Jw-YD_s7Fs398'
       )!);
       if (response.statusCode == 200) {
         ///data successfully
@@ -36,11 +40,13 @@ class MapController extends GetxController {
     }
   }
 
+
+
   createMarkers(){
     mapModel.forEach((element){
       markers.add(Marker(
         markerId: MarkerId(element.placeId.toString()),
-        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+        icon: markerIcon,
         position: LatLng(element.geometry.location.lat, element.geometry.location.lng),
         infoWindow: InfoWindow(title: element.name, snippet: element.vicinity),
         onTap: () {
@@ -49,4 +55,6 @@ class MapController extends GetxController {
       ));
     });
   }
+
+
 }
