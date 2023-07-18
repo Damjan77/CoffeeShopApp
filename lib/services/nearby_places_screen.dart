@@ -12,17 +12,7 @@ class NearByPlacesScreen extends StatefulWidget {
 }
 
 class _NearByPlacesScreenState extends State<NearByPlacesScreen> {
-
-  String apiKey = "AIzaSyDzS5EdV9zNC08WSitS09Jw-YD_s7Fs398";
-  String radius = "1000";
-  String types = "cafe";
-  double latitude = 42.00478491557928;
-  double longitude = 21.40917442067392;
-
   NearbyPlacesResponse nearbyPlacesResponse = NearbyPlacesResponse();
-
-  // import 'package:geolocator/geolocator.dart';
-  // List<Placemark> placemark = await Geolocator().placemarkFromCoordinates(52.2165157, 6.9437819);
 
   @override
   Widget build(BuildContext context) {
@@ -36,11 +26,8 @@ class _NearByPlacesScreenState extends State<NearByPlacesScreen> {
         child: Column(
           children: [
             ElevatedButton(onPressed: (){
-
               getNearbyPlaces();
-
             }, child: const Text("Get Nearby Places")),
-
             if(nearbyPlacesResponse.results != null)
               for(int i = 0 ; i < nearbyPlacesResponse.results!.length; i++)
                 nearbyPlacesWidget(nearbyPlacesResponse.results![i])
@@ -51,17 +38,10 @@ class _NearByPlacesScreenState extends State<NearByPlacesScreen> {
   }
 
   void getNearbyPlaces() async {
-
-    var url = Uri.parse('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=' + latitude.toString() + ','
-        + longitude.toString() + '&radius=' + radius + '&types=' + types +'&key=' + apiKey
-    );
-
-    var response = await http.post(url);
-
+    var url = Uri.tryParse('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=42.00478491557928,21.40917442067392&radius=3000&types=cafe&keyword=specialty&key=AIzaSyDzS5EdV9zNC08WSitS09Jw-YD_s7Fs398');
+    var response = await http.post(url!);
     nearbyPlacesResponse = NearbyPlacesResponse.fromJson(jsonDecode(response.body));
-
     setState(() {});
-
   }
 
   Widget nearbyPlacesWidget(Results results) {
@@ -75,9 +55,9 @@ class _NearByPlacesScreenState extends State<NearByPlacesScreen> {
           Text("Name: " + results.name!),
           Text("Location: " + results.geometry!.location!.lat.toString() + " , " + results.geometry!.location!.lng.toString()),
           Text(results.openingHours != null ? "Open" : "Closed"),
+          Text("Rating: " + results.rating.toString())
         ],
       ),
     );
-
   }
 }

@@ -238,6 +238,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_google_places:
+    dependency: "direct main"
+    description:
+      name: flutter_google_places
+      sha256: "546de3a61f65c5b125f2ecb301ccf2603db5f532735ac690473d68724366ab36"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.3"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -376,6 +384,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.5"
+  google_maps_webservice:
+    dependency: transitive
+    description:
+      name: google_maps_webservice
+      sha256: "188bbb363adf1bc69c708029e315f383020c1caba8c5146176de1a6f6feb3524"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.19"
   google_polyline_algorithm:
     dependency: transitive
     description:
@@ -528,6 +544,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.1"
+  rxdart:
+    dependency: transitive
+    description:
+      name: rxdart
+      sha256: "79022a7d6ab5f7d00458ed74c121a75f38c88b1b3fa4bb053f23110b7a2e1241"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.22.6"
   sky_engine:
     dependency: transitive
     description: flutter

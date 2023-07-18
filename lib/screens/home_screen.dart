@@ -13,6 +13,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../services/nearby_places_screen.dart';
 import 'info_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -154,7 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ));
             } else if (index == 2) {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => InfoScreen(),
+                builder: (context) => NearByPlacesScreen(),
               ));
             } else {
               _signOut();
