@@ -150,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ));
             } else if (index == 1) {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => MapScreen(shops),
+                builder: (context) => MapScreen(),
               ));
             } else if (index == 2) {
               Navigator.of(context).push(MaterialPageRoute(
