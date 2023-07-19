@@ -2,8 +2,6 @@
 
 import 'package:coffe_shop_app/camera/preview_page.dart';
 import 'package:coffe_shop_app/custom/custom_app_bar.dart';
-import 'package:coffe_shop_app/model/CoffeeShop.dart';
-import 'package:coffe_shop_app/model/Location.dart';
 import 'package:coffe_shop_app/model/coffee.dart';
 import 'package:coffe_shop_app/screens/cart_screen.dart';
 import 'package:coffe_shop_app/screens/coffee_shops_screen.dart';
@@ -28,20 +26,6 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Coffee> _coffees = <Coffee>[];
   List<Coffee> _cartList = <Coffee>[];
 
-  List<CoffeeShop> shops = [
-    CoffeeShop(
-        shopName: "Kratovo coffee Shop",
-        location: Location(latitude: 42.078050, longitude: 22.181713)),
-    CoffeeShop(
-        shopName: "Kavadarci coffee Shop",
-        location: Location(latitude: 41.433081, longitude: 22.006034)),
-    CoffeeShop(
-        shopName: "Bitola coffee Shop",
-        location: Location(latitude: 41.031556, longitude: 21.352376)),
-    CoffeeShop(
-        shopName: "Skopje coffee Shop",
-        location: Location(latitude: 42.004906, longitude: 21.409890)),
-  ];
 
   void _populateCoffees() {
     var list = <Coffee>[
@@ -126,15 +110,15 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.add_business_rounded,
-              ),
-              label: "List",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
                 Icons.map,
               ),
               label: "Map",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.add_business_rounded,
+              ),
+              label: "List",
             ),
             BottomNavigationBarItem(
               icon: Icon(
