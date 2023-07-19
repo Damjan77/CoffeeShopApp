@@ -5,14 +5,14 @@ import 'package:get/get.dart';
 import '../controllers/map_controller.dart';
 import '../custom/custom_app_bar.dart';
 
-class InfoScreen extends StatefulWidget {
-  const InfoScreen();
+class MapScreen extends StatefulWidget {
+  const MapScreen();
 
   @override
-  _InfoState createState() => _InfoState();
+  _MapScreenState createState() => _MapScreenState();
 }
 
-class _InfoState extends State<InfoScreen> {
+class _MapScreenState extends State<MapScreen> {
   MapController mapController = Get.put(MapController());
 
   @override
@@ -65,4 +65,29 @@ class _InfoState extends State<InfoScreen> {
       )),
     );
   }
+
+// floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+// floatingActionButton: FloatingActionButton(
+//   backgroundColor: Colors.white,
+//   onPressed: () async {
+//     getUserCurrentLocation().then((value) async {
+//       print(value.latitude.toString() + " " + value.longitude.toString());
+//
+//       CameraPosition cameraPosition = new CameraPosition(
+//         target: LatLng(value.latitude, value.longitude),
+//         zoom: 14,
+//       );
+//
+//       final GoogleMapController controller = await _controller.future;
+//       controller
+//           .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+//       setState(() {});
+//     });
+//   },
+//   child: Icon(
+//     Icons.my_location_sharp,
+//     color: Colors.black,
+//   ),
+// ),
+
 }

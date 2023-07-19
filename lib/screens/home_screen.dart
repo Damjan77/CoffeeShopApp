@@ -6,14 +6,14 @@ import 'package:coffe_shop_app/model/CoffeeShop.dart';
 import 'package:coffe_shop_app/model/Location.dart';
 import 'package:coffe_shop_app/model/coffee.dart';
 import 'package:coffe_shop_app/screens/cart_screen.dart';
-import 'package:coffe_shop_app/screens/google_map_screen.dart';
+import 'package:coffe_shop_app/screens/coffee_shops_screen.dart';
 import 'package:coffe_shop_app/screens/login_screen.dart';
 import 'package:coffe_shop_app/screens/profile_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'info_screen.dart';
+import 'map_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String idScreen = "homeScreen";
@@ -126,15 +126,15 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.map,
+                Icons.add_business_rounded,
               ),
-              label: "Map",
+              label: "List",
             ),
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.info_outline_rounded,
+                Icons.map,
               ),
-              label: "Info",
+              label: "Map",
             ),
             BottomNavigationBarItem(
               icon: Icon(
@@ -154,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ));
             } else if (index == 2) {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => InfoScreen(),
+                builder: (context) => CoffeeShopsScreen(),
               ));
             } else {
               _signOut();

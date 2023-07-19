@@ -1,4 +1,5 @@
 import 'package:coffe_shop_app/model/coffee.dart';
+import 'package:coffe_shop_app/screens/coffee_shops_screen.dart';
 import 'package:coffe_shop_app/screens/order_screen.dart';
 import 'package:coffe_shop_app/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +41,7 @@ class _CartState extends State<CartScreen> {
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
             Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => OrderSuccessfullScreen(),
+              builder: (context) => CoffeeShopsScreen(),
             ));
           },
           backgroundColor: Color.fromRGBO(225, 166, 107, 100),

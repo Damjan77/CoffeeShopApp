@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:coffe_shop_app/screens/order_successfull_screen.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:coffe_shop_app/model/map_model.dart';
@@ -8,19 +9,19 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import '../custom/custom_app_bar.dart';
 
-class MapScreen extends StatefulWidget {
+class CoffeeShopsScreen extends StatefulWidget {
   static const String idScreen = "mapScreen";
 
-  MapScreen();
+  CoffeeShopsScreen();
 
   @override
-  _MapScreenState createState() => _MapScreenState();
+  _CoffeeShopsScreenState createState() => _CoffeeShopsScreenState();
 }
 
-class _MapScreenState extends State<MapScreen> {
+class _CoffeeShopsScreenState extends State<CoffeeShopsScreen> {
   List<MapModel> mapModel = <MapModel>[].obs;
 
- _MapScreenState();
+  _CoffeeShopsScreenState();
 
   @override
   void initState() {
@@ -56,9 +57,7 @@ class _MapScreenState extends State<MapScreen> {
       print('Error while getting data is $e');
     } finally {
       print('finally: $mapModel');
-      setState(() {
-
-      });
+      setState(() {});
     }
   }
 
@@ -112,77 +111,82 @@ class _MapScreenState extends State<MapScreen> {
               ))
         ],
       ),
-      body:
-      ListView.builder(
+      body: ListView.builder(
           itemCount: mapModel.length,
           itemBuilder: (context, index) {
             final itemData = mapModel[index];
             final name = itemData.name;
-            final lat = itemData.geometry.location.lat;
-            final lng = itemData.geometry.location.lng;
+            final address = itemData.vicinity;
+            final rating = itemData.rating;
             return GestureDetector(
               onTap: () {
-                print('okej e ova');
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => OrderSuccessfullScreen(),
+                  ),
+                );
               },
               child: Card(
+                color: const Color(0xFFFFEFC7),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0.0),
+                  borderRadius: BorderRadius.circular(5),
                 ),
                 child: Padding(
                     padding: EdgeInsets.only(left: 10, top: 10, bottom: 10),
-                    child: Column(
+                    child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(name,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.left,
-                            style: const TextStyle(
-                                fontSize: 20,
-                                fontStyle: FontStyle.italic,
-                                color: Colors.black)),
-                        SizedBox(
-                          height: 5,
+                        Icon(
+                          Icons.coffee_rounded,
+                          color: Colors.brown,
+                          size: 32,
                         ),
-                        Text("$lat $lng",
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.left,
-                            style: const TextStyle(
-                                fontSize: 14,
-                                fontStyle: FontStyle.italic,
-                                color: Colors.grey)),
-                        SizedBox(
-                          height: 5,
+                        Container(width: 12),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(name,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.left,
+                                  style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.brown)),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Text("Location: " + address,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.left,
+                                  style: const TextStyle(
+                                      fontSize: 14,
+                                      fontStyle: FontStyle.italic,
+                                      color: Colors.grey)),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Text("Rating: " + rating.toString(),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.right,
+                                  style: const TextStyle(
+                                      fontSize: 14,
+                                      fontStyle: FontStyle.italic,
+                                      color: Colors.grey)),
+                              SizedBox(
+                                height: 5,
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     )),
               ),
             );
           }),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
-      // floatingActionButton: FloatingActionButton(
-      //   backgroundColor: Colors.white,
-      //   onPressed: () async {
-      //     getUserCurrentLocation().then((value) async {
-      //       print(value.latitude.toString() + " " + value.longitude.toString());
-      //
-      //       CameraPosition cameraPosition = new CameraPosition(
-      //         target: LatLng(value.latitude, value.longitude),
-      //         zoom: 14,
-      //       );
-      //
-      //       final GoogleMapController controller = await _controller.future;
-      //       controller
-      //           .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
-      //       setState(() {});
-      //     });
-      //   },
-      //   child: Icon(
-      //     Icons.my_location_sharp,
-      //     color: Colors.black,
-      //   ),
-      // ),
     );
   }
 }
