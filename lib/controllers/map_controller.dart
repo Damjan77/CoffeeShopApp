@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:typed_data';
-
 import 'dart:ui' as ui;
 import 'dart:ui';
 import 'package:flutter/services.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:coffe_shop_app/model/map_model.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -14,6 +14,7 @@ class MapController extends GetxController {
   List<MapModel> mapModel = <MapModel>[].obs;
   var markers = RxSet<Marker>();
   var isLoading = false.obs;
+
 
   fetchLocations() async {
     try {
@@ -39,6 +40,17 @@ class MapController extends GetxController {
     }
   }
 
+  Future<Position> getUserCurrentLocation() async {
+    await Geolocator.requestPermission()
+        .then((value) {})
+        .onError((error, stackTrace) async {
+      await Geolocator.requestPermission();
+      print("ERROR $error");
+    });
+    return await Geolocator.getCurrentPosition();
+  }
+
+
   static Future<Uint8List?> getBytesFromAsset(String path, int width) async {
     ByteData data = await rootBundle.load(path);
     ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(),
@@ -49,10 +61,10 @@ class MapController extends GetxController {
         .asUint8List();
   }
 
+
   createMarkers() async {
     Uint8List? markerIcon =
         await getBytesFromAsset("assets/images/pin.png", 150);
-
     mapModel.forEach((element) {
       markers.add(Marker(
         markerId: MarkerId(element.placeId.toString()),

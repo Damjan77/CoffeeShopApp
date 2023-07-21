@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:coffe_shop_app/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -14,11 +16,25 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   MapController mapController = Get.put(MapController());
+  Completer<GoogleMapController> _controller = Completer();
 
   @override
   void initState() {
     super.initState();
     mapController.fetchLocations();
+  }
+
+  void userLocationCameraPosition() {
+    mapController.getUserCurrentLocation().then((value) async {
+      print("${value.latitude} ${value.longitude}");
+      CameraPosition cameraPosition = new CameraPosition(
+        target: LatLng(value.latitude, value.longitude),
+        zoom: 14,
+      );
+      final GoogleMapController controller = await _controller.future;
+      controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+      setState(() {});
+    });
   }
 
   @override
@@ -63,6 +79,14 @@ class _MapScreenState extends State<MapScreen> {
                 child: CircularProgressIndicator(),
               ),
       )),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.white,
+        onPressed: () async {
+          userLocationCameraPosition();
+        },
+        child: const Icon(Icons.my_location_rounded, color: Colors.brown),
+      ),
     );
   }
 
@@ -89,5 +113,4 @@ class _MapScreenState extends State<MapScreen> {
 //     color: Colors.black,
 //   ),
 // ),
-
 }

@@ -6,7 +6,6 @@ import 'package:http/http.dart' as http;
 import 'package:coffe_shop_app/model/map_model.dart';
 import 'package:coffe_shop_app/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import '../custom/custom_app_bar.dart';
 
 class CoffeeShopsScreen extends StatefulWidget {
@@ -29,15 +28,6 @@ class _CoffeeShopsScreenState extends State<CoffeeShopsScreen> {
     getNearbyPlaces();
   }
 
-  // Future<Position> getUserCurrentLocation() async {
-  //   await Geolocator.requestPermission()
-  //       .then((value) {})
-  //       .onError((error, stackTrace) async {
-  //     await Geolocator.requestPermission();
-  //     print("ERROR" + error.toString());
-  //   });
-  //   return await Geolocator.getCurrentPosition();
-  // }
 
   void getNearbyPlaces() async {
     try {
@@ -61,27 +51,27 @@ class _CoffeeShopsScreenState extends State<CoffeeShopsScreen> {
     }
   }
 
-  Widget nearbyPlacesWidget(MapModel results) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      margin: const EdgeInsets.only(top: 10, left: 10, right: 10),
-      padding: const EdgeInsets.all(5),
-      decoration: BoxDecoration(
-          border: Border.all(color: Colors.black),
-          borderRadius: BorderRadius.circular(10)),
-      child: Column(
-        children: [
-          Text("Name: " + results.name),
-          Text("Location: " +
-              results.geometry.location.lat.toString() +
-              " , " +
-              results.geometry.location.lng.toString()),
-          //Text(results.openingHours != null ? "Open" : "Closed"),
-          Text("Rating: " + results.rating.toString())
-        ],
-      ),
-    );
-  }
+  // Widget nearbyPlacesWidget(MapModel results) {
+  //   return Container(
+  //     width: MediaQuery.of(context).size.width,
+  //     margin: const EdgeInsets.only(top: 10, left: 10, right: 10),
+  //     padding: const EdgeInsets.all(5),
+  //     decoration: BoxDecoration(
+  //         border: Border.all(color: Colors.black),
+  //         borderRadius: BorderRadius.circular(10)),
+  //     child: Column(
+  //       children: [
+  //         Text("Name: " + results.name),
+  //         Text("Location: " +
+  //             results.geometry.location.lat.toString() +
+  //             " , " +
+  //             results.geometry.location.lng.toString()),
+  //         //Text(results.openingHours != null ? "Open" : "Closed"),
+  //         Text("Rating: " + results.rating.toString())
+  //       ],
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
