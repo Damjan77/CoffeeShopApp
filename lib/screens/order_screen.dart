@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:coffe_shop_app/model/coffee.dart';
+import 'package:coffe_shop_app/model/Coffee.dart';
 import 'package:flutter/material.dart';
 import '../custom/custom_app_bar.dart';
 

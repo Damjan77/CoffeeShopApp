@@ -137,7 +137,7 @@ class _PreviewPageState extends State<PreviewPage> {
                               child: Container(
                                   decoration: BoxDecoration(
                                       borderRadius:
-                                          BorderRadius.all(Radius.circular(10)),
+                                          const BorderRadius.all(Radius.circular(10)),
                                       image: DecorationImage(
                                           image: NetworkImage(
                                               snapshot.data![index]['url']),

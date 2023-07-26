@@ -1,16 +1,13 @@
 // ignore_for_file: prefer_const_constructors
-
 import 'package:coffe_shop_app/camera/preview_page.dart';
 import 'package:coffe_shop_app/custom/custom_app_bar.dart';
-import 'package:coffe_shop_app/model/coffee.dart';
+import 'package:coffe_shop_app/model/Coffee.dart';
 import 'package:coffe_shop_app/screens/cart_screen.dart';
 import 'package:coffe_shop_app/screens/coffee_shops_screen.dart';
 import 'package:coffe_shop_app/screens/login_screen.dart';
 import 'package:coffe_shop_app/screens/profile_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'map_screen.dart';
 
 class HomeScreen extends StatefulWidget {

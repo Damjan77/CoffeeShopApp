@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:coffe_shop_app/screens/order_successfull_screen.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:coffe_shop_app/model/map_model.dart';
+import 'package:coffe_shop_app/model/Map_model.dart';
 import 'package:coffe_shop_app/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import '../custom/custom_app_bar.dart';
@@ -51,27 +51,6 @@ class _CoffeeShopsScreenState extends State<CoffeeShopsScreen> {
     }
   }
 
-  // Widget nearbyPlacesWidget(MapModel results) {
-  //   return Container(
-  //     width: MediaQuery.of(context).size.width,
-  //     margin: const EdgeInsets.only(top: 10, left: 10, right: 10),
-  //     padding: const EdgeInsets.all(5),
-  //     decoration: BoxDecoration(
-  //         border: Border.all(color: Colors.black),
-  //         borderRadius: BorderRadius.circular(10)),
-  //     child: Column(
-  //       children: [
-  //         Text("Name: " + results.name),
-  //         Text("Location: " +
-  //             results.geometry.location.lat.toString() +
-  //             " , " +
-  //             results.geometry.location.lng.toString()),
-  //         //Text(results.openingHours != null ? "Open" : "Closed"),
-  //         Text("Rating: " + results.rating.toString())
-  //       ],
-  //     ),
-  //   );
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +91,7 @@ class _CoffeeShopsScreenState extends State<CoffeeShopsScreen> {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => OrderSuccessfullScreen(),
+                    builder: (context) => OrderSuccessfullScreen(shop: mapModel[index]),
                   ),
                 );
               },

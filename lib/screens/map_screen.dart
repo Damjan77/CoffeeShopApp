@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:coffe_shop_app/screens/coffee_shops_screen.dart';
 import 'package:coffe_shop_app/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:get/get.dart';
 import '../controllers/map_controller.dart';
@@ -16,7 +18,7 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   MapController mapController = Get.put(MapController());
-  Completer<GoogleMapController> _controller = Completer();
+  late GoogleMapController _controller;
 
   @override
   void initState() {
@@ -24,17 +26,36 @@ class _MapScreenState extends State<MapScreen> {
     mapController.fetchLocations();
   }
 
-  void userLocationCameraPosition() {
-    mapController.getUserCurrentLocation().then((value) async {
-      print("${value.latitude} ${value.longitude}");
-      CameraPosition cameraPosition = new CameraPosition(
-        target: LatLng(value.latitude, value.longitude),
-        zoom: 14,
-      );
-      final GoogleMapController controller = await _controller.future;
-      controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
-      setState(() {});
-    });
+  Future<Position> userLocationCameraPosition() async {
+    // mapController.getUserCurrentLocation().then((value) async {
+    //   print("${value.latitude} ${value.longitude}");
+    //   CameraPosition cameraPosition = new CameraPosition(
+    //     target: LatLng(value.latitude, value.longitude),
+    //     zoom: 14,
+    //   );
+    //   final GoogleMapController controller = await _controller.future;
+    //   controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+    //   setState(() {});
+    // });
+    bool serviceEnabled;
+    LocationPermission permission;
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+
+    if (!serviceEnabled) {
+      return Future.error('Location services are disabled');
+    }
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error("Location permission denied");
+      }
+    }
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error('Location permissions are permanently denied');
+    }
+    Position position = await Geolocator.getCurrentPosition();
+    return position;
   }
 
   @override
@@ -58,7 +79,7 @@ class _MapScreenState extends State<MapScreen> {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => ProfileScreen(),
+                      builder: (context) => CoffeeShopsScreen(),
                     ),
                   );
                 },
@@ -74,6 +95,9 @@ class _MapScreenState extends State<MapScreen> {
                   zoom: 14.4746,
                 ),
                 markers: mapController.markers,
+                onMapCreated: (GoogleMapController controller) {
+                  _controller = controller;
+                },
               )
             : Center(
                 child: CircularProgressIndicator(),
@@ -82,35 +106,16 @@ class _MapScreenState extends State<MapScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.white,
+        mini: true,
         onPressed: () async {
-          userLocationCameraPosition();
+          Position position = await userLocationCameraPosition();
+          _controller.animateCamera(CameraUpdate.newCameraPosition(
+              CameraPosition(
+                  target: LatLng(position.latitude, position.longitude),
+                  zoom: 14)));
         },
         child: const Icon(Icons.my_location_rounded, color: Colors.brown),
       ),
     );
   }
-
-// floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
-// floatingActionButton: FloatingActionButton(
-//   backgroundColor: Colors.white,
-//   onPressed: () async {
-//     getUserCurrentLocation().then((value) async {
-//       print(value.latitude.toString() + " " + value.longitude.toString());
-//
-//       CameraPosition cameraPosition = new CameraPosition(
-//         target: LatLng(value.latitude, value.longitude),
-//         zoom: 14,
-//       );
-//
-//       final GoogleMapController controller = await _controller.future;
-//       controller
-//           .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
-//       setState(() {});
-//     });
-//   },
-//   child: Icon(
-//     Icons.my_location_sharp,
-//     color: Colors.black,
-//   ),
-// ),
 }

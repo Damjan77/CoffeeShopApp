@@ -6,7 +6,7 @@ import 'dart:ui';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import 'package:coffe_shop_app/model/map_model.dart';
+import 'package:coffe_shop_app/model/Map_model.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 
@@ -40,15 +40,15 @@ class MapController extends GetxController {
     }
   }
 
-  Future<Position> getUserCurrentLocation() async {
-    await Geolocator.requestPermission()
-        .then((value) {})
-        .onError((error, stackTrace) async {
-      await Geolocator.requestPermission();
-      print("ERROR $error");
-    });
-    return await Geolocator.getCurrentPosition();
-  }
+  // Future<Position> getUserCurrentLocation() async {
+  //   await Geolocator.requestPermission()
+  //       .then((value) {})
+  //       .onError((error, stackTrace) async {
+  //     await Geolocator.requestPermission();
+  //     print("ERROR $error");
+  //   });
+  //   return await Geolocator.getCurrentPosition();
+  // }
 
 
   static Future<Uint8List?> getBytesFromAsset(String path, int width) async {
