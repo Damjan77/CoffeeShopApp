@@ -51,7 +51,7 @@ class _OrderState extends State<OrderScreen> {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingActionButton.extended(
-          onPressed:  () { Navigator.pop(context); },
+          onPressed:  () { Navigator.pop(context, _item); },
           backgroundColor: const Color(0xFF7B5B36),
           label: const Text("DONE"),
           icon: Icon(Icons.done),

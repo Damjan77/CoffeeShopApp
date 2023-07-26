@@ -7,6 +7,7 @@ import 'package:coffe_shop_app/model/Map_model.dart';
 import 'package:coffe_shop_app/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import '../custom/custom_app_bar.dart';
+import '../model/Coffee.dart';
 
 class CoffeeShopsScreen extends StatefulWidget {
   static const String idScreen = "mapScreen";
@@ -19,6 +20,7 @@ class CoffeeShopsScreen extends StatefulWidget {
 
 class _CoffeeShopsScreenState extends State<CoffeeShopsScreen> {
   List<MapModel> mapModel = <MapModel>[].obs;
+  late Coffee order;
 
   _CoffeeShopsScreenState();
 
@@ -51,9 +53,22 @@ class _CoffeeShopsScreenState extends State<CoffeeShopsScreen> {
     }
   }
 
+  // _getOrderedItem(BuildContext context, Widget page) async {
+  //   final dataFromOrderedItem = await Navigator.push(
+  //     context,
+  //     MaterialPageRoute(builder: (context) => page),
+  //   ) as Coffee;
+  //   // Here we have the data from the second screen
+  //   order.name = dataFromOrderedItem.name;
+  //   order.sugar = dataFromOrderedItem.sugar;
+  //   order.milk = dataFromOrderedItem.milk;
+  // }
+
 
   @override
   Widget build(BuildContext context) {
+    final dynamic order = ModalRoute.of(context)!.settings.arguments;
+
     return Scaffold(
       appBar: CustomAppBar(
         appBar: AppBar(),
@@ -92,7 +107,7 @@ class _CoffeeShopsScreenState extends State<CoffeeShopsScreen> {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => OrderSuccessfullScreen(shop: mapModel[index]),
-                  ),
+                  settings: RouteSettings(arguments: order)),
                 );
               },
               child: Card(

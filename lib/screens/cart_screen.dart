@@ -1,11 +1,10 @@
-import 'package:coffe_shop_app/model/Coffee.dart';
-import 'package:coffe_shop_app/screens/coffee_shops_screen.dart';
 import 'package:coffe_shop_app/screens/order_screen.dart';
 import 'package:coffe_shop_app/screens/profile_screen.dart';
+import 'package:coffe_shop_app/screens/coffee_shops_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../custom/custom_app_bar.dart';
-import 'order_successfull_screen.dart';
+import '../model/Coffee.dart';
 
 class CartScreen extends StatefulWidget {
   final List<Coffee> _cart;
@@ -109,12 +108,16 @@ class _CartState extends State<CartScreen> {
                         ),
                         title: Text(item.name),
                         subtitle: Text(item.price.toString() + " MKD"),
-                        onTap: () {
+                        onTap: () async {
                           debugPrint('Card tapped.');
                           debugPrint(item.name);
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => OrderScreen(item),
-                          ));
+                          final dataFromOrder = await Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => OrderScreen(item)),
+                          ) as Coffee;
+                          item.name = dataFromOrder.name;
+                          item.milk = dataFromOrder.milk;
+                          item.sugar = dataFromOrder.sugar;
                         },
                         trailing: GestureDetector(
                             child: const Icon(
@@ -149,6 +152,7 @@ class _CartState extends State<CartScreen> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
+          debugPrint(item.name);
           Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => CoffeeShopsScreen(),
             settings: RouteSettings(arguments: item),

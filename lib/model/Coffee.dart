@@ -1,5 +1,5 @@
 class Coffee {
-  final String name;
+  String name;
   final double price;
   final String image;
   int sugar;
