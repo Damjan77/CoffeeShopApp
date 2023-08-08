@@ -111,12 +111,12 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               label: "Map",
             ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.add_business_rounded,
-              ),
-              label: "List",
-            ),
+            // BottomNavigationBarItem(
+            //   icon: Icon(
+            //     Icons.add_business_rounded,
+            //   ),
+            //   label: "List",
+            // ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.logout,
@@ -133,14 +133,9 @@ class _HomeScreenState extends State<HomeScreen> {
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => MapScreen(),
               ));
-            } else if (index == 2) {
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => CoffeeShopsScreen(),
-              ));
             } else {
               _signOut();
-            }
-          },
+            }},
         ),
         appBar: CustomAppBar(
           appBar: AppBar(),
@@ -160,10 +155,21 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Stack(
                     alignment: Alignment.topCenter,
                     children: <Widget>[
-                      Icon(
-                        Icons.shopping_cart,
-                        size: 30.0,
+                      Tooltip(richMessage: TextSpan(
+                        text: 'Order by',
+                        style: TextStyle(color: Colors.white),
+                        children: <InlineSpan>[
+                          TextSpan(
+                            text: ' adding a coffee to your cart',
+                          ),
+                        ],
                       ),
+                          decoration: BoxDecoration(color: Colors.brown),
+                          child: Icon(
+                        Icons.shopping_cart,
+                        // size: 30.0,
+                      )),
+
                       if (_cartList.isNotEmpty)
                         Padding(
                           padding: const EdgeInsets.only(left: 2.0),
@@ -180,6 +186,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                         ),
+
                     ],
                   ),
                   onTap: () {

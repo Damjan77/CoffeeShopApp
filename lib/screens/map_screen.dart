@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:coffe_shop_app/screens/coffee_shops_screen.dart';
+import 'package:coffe_shop_app/screens/home_screen.dart';
 import 'package:coffe_shop_app/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -70,16 +70,27 @@ class _MapScreenState extends State<MapScreen> {
                 child: Stack(
                   alignment: Alignment.topCenter,
                   children: <Widget>[
-                    Icon(
-                      Icons.add_business_rounded,
-                      size: 30.0,
+                    Tooltip(richMessage: TextSpan(
+                      text: 'Order to',
+                      style: TextStyle(color: Colors.white),
+                      children: <InlineSpan>[
+                        TextSpan(
+                          text: ' pick from the list of available shops',
+                        ),
+                      ],
+                    ),
+                        decoration: BoxDecoration(color: Colors.brown),
+                      child: Icon(
+                        Icons.home_outlined,
+                        size: 30.0,
+                      ),
                     ),
                   ],
                 ),
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => CoffeeShopsScreen(),
+                      builder: (context) => HomeScreen(),
                     ),
                   );
                 },

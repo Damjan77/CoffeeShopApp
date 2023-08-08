@@ -159,7 +159,7 @@ class _CartState extends State<CartScreen> {
           ));
         },
         backgroundColor: Color.fromRGBO(225, 166, 107, 100),
-        label: Text("CHECKOUT"),
+        label: Text("PICK A SHOP"),
         icon: Icon(Icons.shopping_cart_checkout),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

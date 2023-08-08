@@ -120,10 +120,22 @@ class _CoffeeShopsScreenState extends State<CoffeeShopsScreen> {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Icon(
-                          Icons.coffee_rounded,
-                          color: Colors.brown,
-                          size: 32,
+                        Tooltip(
+                          richMessage: TextSpan(
+                            text: 'Click to',
+                            style: TextStyle(color: Colors.white),
+                            children: <InlineSpan>[
+                              TextSpan(
+                                text: ' order from this shop',
+                              ),
+                            ],
+                          ),
+                          decoration: BoxDecoration(color: Colors.brown),
+                          child: Icon(
+                            Icons.coffee_rounded,
+                            color: Colors.brown,
+                            size: 32,
+                          ),
                         ),
                         Container(width: 12),
                         Expanded(
