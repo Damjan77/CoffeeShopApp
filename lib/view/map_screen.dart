@@ -1,7 +1,5 @@
 import 'dart:async';
-
-import 'package:coffe_shop_app/screens/home_screen.dart';
-import 'package:coffe_shop_app/screens/profile_screen.dart';
+import 'package:coffe_shop_app/view/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';

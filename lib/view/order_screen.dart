@@ -1,8 +1,10 @@
 import 'dart:developer';
-
 import 'package:coffe_shop_app/model/Coffee.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../controllers/order_controller.dart';
 import '../custom/custom_app_bar.dart';
+import '../custom/custom_text_style.dart';
 
 class OrderScreen extends StatefulWidget {
   final Coffee _item;
@@ -14,33 +16,34 @@ class OrderScreen extends StatefulWidget {
 }
 
 class _OrderState extends State<OrderScreen> {
+  final orderController = Get.put(OrderController());
   _OrderState(this._item);
 
   final Coffee _item;
 
   void increaseSugarQuantity() {
     setState(() {
-      _item.sugar += 1;
+      orderController.increaseSugar(_item);
     });
   }
 
   void decreaseSugarQuantity() {
     setState(() {
-      if (_item.sugar > 0) {
-        _item.sugar -= 1;
-      }
+      orderController.decreaseSugar(_item);
     });
   }
 
   void toggleMilk() {
     setState(() {
-      if (_item.milk) {
-        _item.milk = false;
-      } else {
-        _item.milk = true;
-      }
+      orderController.milk(_item);
     });
   }
+
+  Expanded expandedWidgetEmpty(){
+    return const Expanded(
+      child: Text(''));
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -65,10 +68,7 @@ class _OrderState extends State<OrderScreen> {
               child: Center(
                 child: Text(
                   'Customize your order:',
-                  style: TextStyle(
-                      color: Color(0xFF7B5B36),
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25),
+                  style: CustomTextStyle.customTextStyle
                 ),
               ),
             ),
@@ -81,10 +81,7 @@ class _OrderState extends State<OrderScreen> {
                 ),
                 Text(
                   _item.name,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: CustomTextStyle.customTextStyle,
                 ),
                 const SizedBox(height: 50),
                 Row(
@@ -93,10 +90,7 @@ class _OrderState extends State<OrderScreen> {
                       child: Text(
                         'Sugar',
                         textAlign: TextAlign.left,
-                        style: TextStyle(
-                            color: Color(0xFF7B5B36),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 25),
+                        style: CustomTextStyle.customTextStyle,
                       ),
                     ),
                     Expanded(
@@ -118,10 +112,7 @@ class _OrderState extends State<OrderScreen> {
                       child: Text(
                         _item.sugar.toString(),
                         textAlign: TextAlign.center,
-                        style: const TextStyle(
-                            color: Color(0xFF7B5B36),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 25),
+                        style: CustomTextStyle.customTextStyle,
                       ),
                     ),
                     Expanded(
@@ -148,10 +139,7 @@ class _OrderState extends State<OrderScreen> {
                       child: Text(
                         'Milk',
                         textAlign: TextAlign.left,
-                        style: TextStyle(
-                            color: Color(0xFF7B5B36),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 25),
+                        style: CustomTextStyle.customTextStyle,
                       ),
                     ),
                     Expanded(
@@ -163,9 +151,7 @@ class _OrderState extends State<OrderScreen> {
                         },
                       ),
                     ),
-                    const Expanded(
-                      child: Text(''),
-                    ),
+                    expandedWidgetEmpty()
                   ],
                 ),
                 const SizedBox(height: 20),
@@ -175,25 +161,17 @@ class _OrderState extends State<OrderScreen> {
                       child: Text(
                         'Total',
                         textAlign: TextAlign.left,
-                        style: TextStyle(
-                            color: Color(0xFF7B5B36),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 25),
+                        style: CustomTextStyle.customTextStyle,
                       ),
                     ),
                     Expanded(
                       child: Text(
                         '${_item.price} MKD',
                         textAlign: TextAlign.center,
-                        style: const TextStyle(
-                            color: Color(0xFF7B5B36),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 25),
+                        style: CustomTextStyle.customTextStyle,
                       ),
                     ),
-                    const Expanded(
-                      child: Text(''),
-                    ),
+                    expandedWidgetEmpty()
                   ],
                 ),
               ]),

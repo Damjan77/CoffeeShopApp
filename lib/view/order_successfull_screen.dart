@@ -2,7 +2,7 @@
 import 'package:coffe_shop_app/custom/custom_app_bar.dart';
 import 'package:coffe_shop_app/model/Coffee.dart';
 import 'package:coffe_shop_app/model/Map_model.dart';
-import 'package:coffe_shop_app/screens/home_screen.dart';
+import 'package:coffe_shop_app/view/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class OrderSuccessfullScreen extends StatelessWidget {

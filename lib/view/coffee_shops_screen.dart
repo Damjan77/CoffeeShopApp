@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:coffe_shop_app/screens/order_successfull_screen.dart';
+import 'package:coffe_shop_app/view/order_successfull_screen.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:coffe_shop_app/model/Map_model.dart';
-import 'package:coffe_shop_app/screens/profile_screen.dart';
+import 'package:coffe_shop_app/view/profile_screen.dart';
 import 'package:flutter/material.dart';
 import '../custom/custom_app_bar.dart';
 import '../model/Coffee.dart';

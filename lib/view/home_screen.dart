@@ -1,13 +1,12 @@
 // ignore_for_file: prefer_const_constructors
-import 'package:coffe_shop_app/camera/preview_page.dart';
 import 'package:coffe_shop_app/custom/custom_app_bar.dart';
 import 'package:coffe_shop_app/model/Coffee.dart';
-import 'package:coffe_shop_app/screens/cart_screen.dart';
-import 'package:coffe_shop_app/screens/coffee_shops_screen.dart';
-import 'package:coffe_shop_app/screens/login_screen.dart';
-import 'package:coffe_shop_app/screens/profile_screen.dart';
+import 'package:coffe_shop_app/view/cart_screen.dart';
+import 'package:coffe_shop_app/view/login_screen.dart';
+import 'package:coffe_shop_app/view/profile_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '../services/gallery_service.dart';
 import 'map_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -145,7 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => PreviewPage()));
+                        MaterialPageRoute(builder: (context) => GalleryService()));
                   },
                   child: Icon(Icons.photo_library),
                 )),

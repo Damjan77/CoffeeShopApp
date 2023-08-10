@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:coffe_shop_app/camera/preview_page.dart';
 import 'package:coffe_shop_app/custom/custom_app_bar.dart';
-import 'package:coffe_shop_app/screens/login_screen.dart';
+import 'package:coffe_shop_app/view/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '../custom/custom_text_style.dart';
+import '../services/gallery_service.dart';
 
 class ProfileScreen extends StatefulWidget {
   ProfileScreen();
@@ -66,7 +67,7 @@ class _ProfileState extends State<ProfileScreen> {
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(
-                          builder: (_) => PreviewPage()));
+                          builder: (_) => GalleryService()));
                 },
                 backgroundColor: Color(0xFF7B5B36),
                 label: Text("OPEN IMAGE GALLERY"),
@@ -99,10 +100,7 @@ class _ProfileState extends State<ProfileScreen> {
               child: Center(
                 child: Text(
                   'Welcome back!',
-                  style: TextStyle(
-                      color: Color(0xFF7B5B36),
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25),
+                  style: CustomTextStyle.customTextStyle,
                 ),
               ),
             ),

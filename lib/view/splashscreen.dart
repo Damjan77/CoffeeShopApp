@@ -1,4 +1,4 @@
-import 'package:coffe_shop_app/screens/login_screen.dart';
+import 'package:coffe_shop_app/view/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:splashscreen/splashscreen.dart';

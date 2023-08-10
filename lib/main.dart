@@ -1,8 +1,8 @@
-import 'package:coffe_shop_app/camera/preview_page.dart';
-import 'package:coffe_shop_app/screens/home_screen.dart';
-import 'package:coffe_shop_app/screens/login_screen.dart';
-import 'package:coffe_shop_app/screens/register_screen.dart';
-import 'package:coffe_shop_app/screens/splashscreen.dart';
+import 'package:coffe_shop_app/services/gallery_service.dart';
+import 'package:coffe_shop_app/view/home_screen.dart';
+import 'package:coffe_shop_app/view/login_screen.dart';
+import 'package:coffe_shop_app/view/register_screen.dart';
+import 'package:coffe_shop_app/view/splashscreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         LoginScreen.idScreen:(context) => LoginScreen(),
         RegisterScreen.idScreen:(context) => RegisterScreen(),
         HomeScreen.idScreen:(context) => HomeScreen(),
-        PreviewPage.idScreen:(context) => PreviewPage(),
+        GalleryService.idScreen:(context) => GalleryService(),
       },
     );
   }

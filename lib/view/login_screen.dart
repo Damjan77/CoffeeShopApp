@@ -1,5 +1,5 @@
-import 'package:coffe_shop_app/screens/home_screen.dart';
-import 'package:coffe_shop_app/screens/register_screen.dart';
+import 'package:coffe_shop_app/view/home_screen.dart';
+import 'package:coffe_shop_app/view/register_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -113,6 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
             )
     );
   }
+
   Row signUpOption(){
     return Row(mainAxisAlignment: MainAxisAlignment.center,
       children: [const Text("Don't have account?",

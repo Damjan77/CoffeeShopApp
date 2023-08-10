@@ -1,8 +1,7 @@
-import 'package:coffe_shop_app/screens/home_screen.dart';
-import 'package:coffe_shop_app/screens/login_screen.dart';
+import 'package:coffe_shop_app/view/home_screen.dart';
+import 'package:coffe_shop_app/view/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatefulWidget {
