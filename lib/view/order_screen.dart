@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/order_controller.dart';
 import '../custom/custom_app_bar.dart';
+import '../custom/custom_box_widgets.dart';
 import '../custom/custom_text_style.dart';
 
 class OrderScreen extends StatefulWidget {
@@ -55,11 +56,11 @@ class _OrderState extends State<OrderScreen> {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingActionButton.extended(
           onPressed:  () { Navigator.pop(context, _item); },
-          backgroundColor: const Color(0xFF7B5B36),
+          backgroundColor: primaryColor,
           label: const Text("DONE"),
           icon: Icon(Icons.done),
         ),
-        backgroundColor: const Color(0xFFFCF5C9),
+        backgroundColor: backgroundColor,
         body: SingleChildScrollView(
           child: Column(children: <Widget>[
             const SizedBox(
@@ -83,7 +84,7 @@ class _OrderState extends State<OrderScreen> {
                   _item.name,
                   style: CustomTextStyle.customTextStyle,
                 ),
-                const SizedBox(height: 50),
+                addVerticalSpace(50),
                 Row(
                   children: <Widget>[
                     const Expanded(
@@ -100,7 +101,7 @@ class _OrderState extends State<OrderScreen> {
                           child: const Icon(
                             Icons.remove_circle,
                             size: 30,
-                            color: Color(0xFF7B5B36),
+                            color: primaryColor,
                           ),
                           onTap: () {
                             decreaseSugarQuantity();
@@ -122,7 +123,7 @@ class _OrderState extends State<OrderScreen> {
                           child: const Icon(
                             Icons.add_circle,
                             size: 30,
-                            color: Color(0xFF7B5B36),
+                            color: primaryColor,
                           ),
                           onTap: () {
                             increaseSugarQuantity();
@@ -132,7 +133,7 @@ class _OrderState extends State<OrderScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 20),
+                addVerticalSpace(20),
                 Row(
                   children: <Widget>[
                     const Expanded(
@@ -145,7 +146,7 @@ class _OrderState extends State<OrderScreen> {
                     Expanded(
                       child: Switch(
                         value: _item.milk,
-                        activeColor: const Color(0xFF7B5B36),
+                        activeColor: primaryColor,
                         onChanged: (bool value) {
                           toggleMilk();
                         },
@@ -154,7 +155,7 @@ class _OrderState extends State<OrderScreen> {
                     expandedWidgetEmpty()
                   ],
                 ),
-                const SizedBox(height: 20),
+                addVerticalSpace(20),
                 Row(
                   children: <Widget>[
                     const Expanded(

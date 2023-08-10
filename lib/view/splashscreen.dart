@@ -1,3 +1,4 @@
+import 'package:coffe_shop_app/custom/custom_box_widgets.dart';
 import 'package:coffe_shop_app/view/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -13,7 +14,7 @@ class SplashScr extends StatelessWidget {
       navigateAfterSeconds: LoginScreen(),
       image: Image.asset('assets/images/logo.png'),
       photoSize: 150.0,
-      backgroundColor: const Color(0xFFFFEFC7),
+      backgroundColor: secondaryColor,
     );
   }
 }

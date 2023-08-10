@@ -5,6 +5,8 @@ import 'package:coffe_shop_app/model/Map_model.dart';
 import 'package:coffe_shop_app/view/home_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../custom/custom_box_widgets.dart';
+
 class OrderSuccessfullScreen extends StatelessWidget {
   static const String idScreen = "orderSuccessfullScreen";
 
@@ -52,21 +54,17 @@ class OrderSuccessfullScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
-                      height: 10,
-                    ),
+                    addVerticalSpace(10),
                     Text(
                       "Your order is: ",
                       style: TextStyle(
                           fontWeight: FontWeight.w800,
                           fontSize: 20,
-                          color: Colors.brown),
+                          color: primaryColor),
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
+                    addVerticalSpace(10),
                     Card(
-                      color: const Color(0xFFFFEFC7),
+                      color: secondaryColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
                       ),
@@ -91,10 +89,8 @@ class OrderSuccessfullScreen extends StatelessWidget {
                                         style: const TextStyle(
                                             fontSize: 20,
                                             fontWeight: FontWeight.bold,
-                                            color: Colors.brown)),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
+                                            color: primaryColor)),
+                                    addVerticalSpace(10),
                                     Text("Milk: ${order.milk ? "yes" : "no"}",
                                         overflow: TextOverflow.ellipsis,
                                         textAlign: TextAlign.left,
@@ -102,9 +98,7 @@ class OrderSuccessfullScreen extends StatelessWidget {
                                             fontSize: 12,
                                             fontStyle: FontStyle.italic,
                                             color: Colors.grey)),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
+                                    addVerticalSpace(10),
                                     Text("Sugar: ${order.sugar}",
                                         overflow: TextOverflow.ellipsis,
                                         textAlign: TextAlign.left,
@@ -112,30 +106,24 @@ class OrderSuccessfullScreen extends StatelessWidget {
                                             fontSize: 12,
                                             fontStyle: FontStyle.italic,
                                             color: Colors.grey)),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
+                                    addVerticalSpace(10),
                                   ],
                                 ),
                               ),
                             ],
                           )),
                     ),
-                    SizedBox(
-                      height: 25,
-                    ),
+                    addVerticalSpace(25),
                     Text(
                       "It is waiting for you at: ",
                       style: TextStyle(
                           fontWeight: FontWeight.w800,
                           fontSize: 20,
-                          color: Colors.brown),
+                          color: primaryColor),
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
+                    addVerticalSpace(10),
                     Card(
-                      color: const Color(0xFFFFEFC7),
+                      color: secondaryColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
                       ),
@@ -147,7 +135,7 @@ class OrderSuccessfullScreen extends StatelessWidget {
                             children: [
                               Icon(
                                 Icons.cottage,
-                                color: Colors.brown,
+                                color: primaryColor,
                                 size: 32,
                               ),
                               Container(width: 12),
@@ -161,10 +149,8 @@ class OrderSuccessfullScreen extends StatelessWidget {
                                         style: const TextStyle(
                                             fontSize: 20,
                                             fontWeight: FontWeight.bold,
-                                            color: Colors.brown)),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
+                                            color: primaryColor)),
+                                    addVerticalSpace(10),
                                     Text("Location: " + shop.vicinity,
                                         overflow: TextOverflow.ellipsis,
                                         textAlign: TextAlign.left,
@@ -172,24 +158,20 @@ class OrderSuccessfullScreen extends StatelessWidget {
                                             fontSize: 14,
                                             fontStyle: FontStyle.italic,
                                             color: Colors.grey)),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
+                                    addVerticalSpace(10),
                                   ],
                                 ),
                               ),
                             ],
                           )),
                     ),
-                    SizedBox(
-                      height: 25,
-                    ),
+                    addVerticalSpace(25),
                     Text(
                       "Have a nice coffee!",
                       style: TextStyle(
                           fontWeight: FontWeight.w800,
                           fontSize: 20,
-                          color: Colors.brown),
+                          color: primaryColor),
                     ),
                   ],
                 ),

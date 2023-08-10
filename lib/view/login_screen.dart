@@ -2,6 +2,7 @@ import 'package:coffe_shop_app/view/home_screen.dart';
 import 'package:coffe_shop_app/view/register_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '../custom/custom_box_widgets.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String idScreen = "loginScreen";
@@ -63,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: Color(0xFFFFEFC7),
+        backgroundColor: secondaryColor,
         body: Container(
           alignment: Alignment.center,
         child: Padding(
@@ -71,8 +72,8 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
             children: <Widget>[
               Image.asset('assets/images/logo.png', height: 200,),
-              Text("Login", style: TextStyle(color: Color(0xFF7B5B36), fontWeight: FontWeight.bold, fontSize: 30),),
-              SizedBox(height: 20),
+              Text("Login", style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold, fontSize: 30),),
+              addVerticalSpace(20),
               TextField(
                 controller: _emailController,
                 textInputAction: TextInputAction.next,
@@ -82,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(30.0))
                 ),
               ),
-              SizedBox(height: 20),
+              addVerticalSpace(20),
               TextField(
                 controller: _passwordController,
                 textInputAction: TextInputAction.done,
@@ -93,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 obscureText: true,
               ),
-              SizedBox(height: 20),
+              addVerticalSpace(20),
               ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size.fromHeight(50),
@@ -105,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 icon: Icon(Icons.lock_open, size: 25,),
                 onPressed: _signIn,
                 ),
-              SizedBox(height: 20),
+              addVerticalSpace(20),
               signUpOption()
               ]
             )
@@ -126,7 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
           },
           child: const Text(
             " Register",
-            style: TextStyle(color: Color(0xFF7B5B36), fontWeight: FontWeight.bold),
+            style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
           ),
         )
       ],

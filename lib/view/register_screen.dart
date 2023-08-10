@@ -1,4 +1,4 @@
-import 'package:coffe_shop_app/view/home_screen.dart';
+import 'package:coffe_shop_app/custom/custom_box_widgets.dart';
 import 'package:coffe_shop_app/view/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -70,8 +70,8 @@ class _RegisterScreenState extends State<RegisterScreen>{
             child: Column(
             children: <Widget>[
               Image.asset('assets/images/logo.png', height: 200,),
-              Text("Register", style: TextStyle(color: Color(0xFF7B5B36), fontWeight: FontWeight.bold, fontSize: 30),),
-              SizedBox(height: 20),
+              Text("Register", style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold, fontSize: 30),),
+              addVerticalSpace(20),
               TextField(
                 controller: emailController,
                 textInputAction: TextInputAction.next,
@@ -79,7 +79,7 @@ class _RegisterScreenState extends State<RegisterScreen>{
                   labelText: "Email",
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(30.0))),
               ),
-              SizedBox(height: 20),
+              addVerticalSpace(20),
               TextField(
                 controller: passwordController,
                 textInputAction: TextInputAction.next,
@@ -88,7 +88,7 @@ class _RegisterScreenState extends State<RegisterScreen>{
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(30.0))),
                 obscureText: true,
               ),
-              SizedBox(height: 20),
+              addVerticalSpace(20),
               TextField(
                 controller: addressController,
                 textInputAction: TextInputAction.done,
@@ -96,7 +96,7 @@ class _RegisterScreenState extends State<RegisterScreen>{
                   labelText: "Address",
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(30.0))),
               ),
-              SizedBox(height: 20),
+              addVerticalSpace(20),
               ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(minimumSize: Size.fromHeight(50),
                 shape: RoundedRectangleBorder(
@@ -105,7 +105,7 @@ class _RegisterScreenState extends State<RegisterScreen>{
                 label: Text("Register", style: TextStyle(fontSize: 24),),
                 onPressed: _signUp,
                 ),
-                SizedBox(height: 20),
+                addVerticalSpace(20),
                 signInOption()
               ]
             )
@@ -121,15 +121,13 @@ class _RegisterScreenState extends State<RegisterScreen>{
       ),
         GestureDetector(
           onTap: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen())
-            );
+            Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
           },
           child: const Text(
             " Login",
-            style: TextStyle(color: Color(0xFF7B5B36), fontWeight: FontWeight.bold),
+            style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
           ),
-        )
-      ],
+        )],
     );
   }
 }

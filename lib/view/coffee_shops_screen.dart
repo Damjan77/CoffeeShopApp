@@ -7,6 +7,7 @@ import 'package:coffe_shop_app/model/Map_model.dart';
 import 'package:coffe_shop_app/view/profile_screen.dart';
 import 'package:flutter/material.dart';
 import '../custom/custom_app_bar.dart';
+import '../custom/custom_box_widgets.dart';
 import '../model/Coffee.dart';
 
 class CoffeeShopsScreen extends StatefulWidget {
@@ -111,7 +112,7 @@ class _CoffeeShopsScreenState extends State<CoffeeShopsScreen> {
                 );
               },
               child: Card(
-                color: const Color(0xFFFFEFC7),
+                color: secondaryColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5),
                 ),
@@ -130,10 +131,10 @@ class _CoffeeShopsScreenState extends State<CoffeeShopsScreen> {
                               ),
                             ],
                           ),
-                          decoration: BoxDecoration(color: Colors.brown),
+                          decoration: BoxDecoration(color: primaryColor),
                           child: Icon(
                             Icons.coffee_rounded,
-                            color: Colors.brown,
+                            color: primaryColor,
                             size: 32,
                           ),
                         ),
@@ -149,10 +150,8 @@ class _CoffeeShopsScreenState extends State<CoffeeShopsScreen> {
                                   style: const TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.brown)),
-                              SizedBox(
-                                height: 5,
-                              ),
+                                      color: primaryColor)),
+                              addVerticalSpace(5),
                               Text("Location: " + address,
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
@@ -161,9 +160,7 @@ class _CoffeeShopsScreenState extends State<CoffeeShopsScreen> {
                                       fontSize: 14,
                                       fontStyle: FontStyle.italic,
                                       color: Colors.grey)),
-                              SizedBox(
-                                height: 5,
-                              ),
+                              addVerticalSpace(5),
                               Text("Rating: " + rating.toString(),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
@@ -172,9 +169,7 @@ class _CoffeeShopsScreenState extends State<CoffeeShopsScreen> {
                                       fontSize: 14,
                                       fontStyle: FontStyle.italic,
                                       color: Colors.grey)),
-                              SizedBox(
-                                height: 5,
-                              ),
+                              addVerticalSpace(5),
                             ],
                           ),
                         ),

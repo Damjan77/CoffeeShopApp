@@ -6,6 +6,8 @@ import 'package:coffe_shop_app/view/splashscreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
+import 'custom/custom_box_widgets.dart';
+
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
       title: 'Coffee Shop App',
       theme: Theme.of(context).copyWith(
         colorScheme: Theme.of(context).colorScheme.copyWith(
-          primary: const Color(0xFF7B5B36),
+          primary: primaryColor,
         ),
       ),
       initialRoute: SplashScr.idScreen,

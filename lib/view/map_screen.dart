@@ -6,6 +6,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:get/get.dart';
 import '../controllers/map_controller.dart';
 import '../custom/custom_app_bar.dart';
+import '../custom/custom_box_widgets.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen();
@@ -25,16 +26,6 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   Future<Position> userLocationCameraPosition() async {
-    // mapController.getUserCurrentLocation().then((value) async {
-    //   print("${value.latitude} ${value.longitude}");
-    //   CameraPosition cameraPosition = new CameraPosition(
-    //     target: LatLng(value.latitude, value.longitude),
-    //     zoom: 14,
-    //   );
-    //   final GoogleMapController controller = await _controller.future;
-    //   controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
-    //   setState(() {});
-    // });
     bool serviceEnabled;
     LocationPermission permission;
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
@@ -77,7 +68,7 @@ class _MapScreenState extends State<MapScreen> {
                         ),
                       ],
                     ),
-                        decoration: BoxDecoration(color: Colors.brown),
+                        decoration: BoxDecoration(color: primaryColor),
                       child: Icon(
                         Icons.home_outlined,
                         size: 30.0,
@@ -108,7 +99,7 @@ class _MapScreenState extends State<MapScreen> {
                   _controller = controller;
                 },
               )
-            : Center(
+            : const Center(
                 child: CircularProgressIndicator(),
               ),
       )),
@@ -123,7 +114,7 @@ class _MapScreenState extends State<MapScreen> {
                   target: LatLng(position.latitude, position.longitude),
                   zoom: 14)));
         },
-        child: const Icon(Icons.my_location_rounded, color: Colors.brown),
+        child: const Icon(Icons.my_location_rounded, color: primaryColor),
       ),
     );
   }

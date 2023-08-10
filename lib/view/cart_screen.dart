@@ -4,6 +4,7 @@ import 'package:coffe_shop_app/view/coffee_shops_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../custom/custom_app_bar.dart';
+import '../custom/custom_box_widgets.dart';
 import '../model/Coffee.dart';
 
 class CartScreen extends StatefulWidget {
@@ -96,7 +97,7 @@ class _CartState extends State<CartScreen> {
                 child: Text(
                   "CLICK ON YOUR COFFEE TO EDIT IT",
                   style: TextStyle(
-                    color: Color(0xFF7B5B36),
+                    color: primaryColor,
                     fontSize: 17,
                     fontWeight: FontWeight.bold,
                   ),
@@ -144,7 +145,7 @@ class _CartState extends State<CartScreen> {
                       "TOTAL: " + total.toString() + " MKD",
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF7B5B36),
+                        color: primaryColor,
                         fontSize: 20,
                       ),
                     ),

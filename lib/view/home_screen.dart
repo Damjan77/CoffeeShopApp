@@ -2,11 +2,13 @@
 import 'package:coffe_shop_app/custom/custom_app_bar.dart';
 import 'package:coffe_shop_app/model/Coffee.dart';
 import 'package:coffe_shop_app/view/cart_screen.dart';
-import 'package:coffe_shop_app/view/login_screen.dart';
 import 'package:coffe_shop_app/view/profile_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../custom/custom_box_widgets.dart';
 import '../services/gallery_service.dart';
+import '../services/logout_controller.dart';
 import 'map_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,6 +19,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final LogoutController _logoutController = Get.put(LogoutController());
   late String userAddress;
   int _selectedIndex = -1;
   List<Coffee> _coffees = <Coffee>[];
@@ -74,28 +77,15 @@ class _HomeScreenState extends State<HomeScreen> {
     _populateCoffees();
   }
 
-  Future _signOut() async {
-    try {
-      await FirebaseAuth.instance.signOut().then((value) {
-        print("User signed out");
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => LoginScreen()));
-      });
-    } on FirebaseAuthException catch (e) {
-      print("ERROR HERE");
-      print(e.message);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          backgroundColor: Color(0xFFFFEFC7),
+          backgroundColor: secondaryColor,
           selectedItemColor:
-              _selectedIndex == -1 ? Color(0xFF7B5B36) : Colors.grey[700],
-          unselectedItemColor: Color(0xFF7B5B36),
+              _selectedIndex == -1 ? primaryColor : Colors.grey[700],
+          unselectedItemColor: primaryColor,
           currentIndex: _selectedIndex == -1 ? 0 : _selectedIndex,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
@@ -133,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 builder: (context) => MapScreen(),
               ));
             } else {
-              _signOut();
+              _logoutController.signOut(context);
             }},
         ),
         appBar: CustomAppBar(
@@ -163,7 +153,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ],
                       ),
-                          decoration: BoxDecoration(color: Colors.brown),
+                          decoration: BoxDecoration(color: primaryColor),
                           child: Icon(
                         Icons.shopping_cart,
                         // size: 30.0,
