@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:coffe_shop_app/custom/custom_app_bar.dart';
+import 'package:coffe_shop_app/custom/custom_text_style.dart';
 import 'package:coffe_shop_app/model/Coffee.dart';
 import 'package:coffe_shop_app/model/Map_model.dart';
 import 'package:coffe_shop_app/view/home_screen.dart';
@@ -57,10 +58,7 @@ class OrderSuccessfullScreen extends StatelessWidget {
                     addVerticalSpace(10),
                     Text(
                       "Your order is: ",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w800,
-                          fontSize: 20,
-                          color: primaryColor),
+                      style: CustomTextStyle.subtitleTextStyle,
                     ),
                     addVerticalSpace(10),
                     Card(
@@ -86,26 +84,17 @@ class OrderSuccessfullScreen extends StatelessWidget {
                                     Text(order.name,
                                         overflow: TextOverflow.ellipsis,
                                         textAlign: TextAlign.left,
-                                        style: const TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                            color: primaryColor)),
+                                        style: CustomTextStyle.subtitleTextStyle),
                                     addVerticalSpace(10),
                                     Text("Milk: ${order.milk ? "yes" : "no"}",
                                         overflow: TextOverflow.ellipsis,
                                         textAlign: TextAlign.left,
-                                        style: const TextStyle(
-                                            fontSize: 12,
-                                            fontStyle: FontStyle.italic,
-                                            color: Colors.grey)),
+                                        style: CustomTextStyle.infoTextStyle),
                                     addVerticalSpace(10),
                                     Text("Sugar: ${order.sugar}",
                                         overflow: TextOverflow.ellipsis,
                                         textAlign: TextAlign.left,
-                                        style: const TextStyle(
-                                            fontSize: 12,
-                                            fontStyle: FontStyle.italic,
-                                            color: Colors.grey)),
+                                        style: CustomTextStyle.infoTextStyle),
                                     addVerticalSpace(10),
                                   ],
                                 ),
@@ -116,10 +105,7 @@ class OrderSuccessfullScreen extends StatelessWidget {
                     addVerticalSpace(25),
                     Text(
                       "It is waiting for you at: ",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w800,
-                          fontSize: 20,
-                          color: primaryColor),
+                      style: CustomTextStyle.subtitleTextStyle,
                     ),
                     addVerticalSpace(10),
                     Card(
@@ -146,18 +132,12 @@ class OrderSuccessfullScreen extends StatelessWidget {
                                     Text(shop.name,
                                         overflow: TextOverflow.ellipsis,
                                         textAlign: TextAlign.left,
-                                        style: const TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                            color: primaryColor)),
+                                        style: CustomTextStyle.subtitleTextStyle),
                                     addVerticalSpace(10),
                                     Text("Location: " + shop.vicinity,
                                         overflow: TextOverflow.ellipsis,
                                         textAlign: TextAlign.left,
-                                        style: const TextStyle(
-                                            fontSize: 14,
-                                            fontStyle: FontStyle.italic,
-                                            color: Colors.grey)),
+                                        style: CustomTextStyle.infoTextStyle),
                                     addVerticalSpace(10),
                                   ],
                                 ),
@@ -168,10 +148,7 @@ class OrderSuccessfullScreen extends StatelessWidget {
                     addVerticalSpace(25),
                     Text(
                       "Have a nice coffee!",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w800,
-                          fontSize: 20,
-                          color: primaryColor),
+                      style: CustomTextStyle.subtitleTextStyle,
                     ),
                   ],
                 ),

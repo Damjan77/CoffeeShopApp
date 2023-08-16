@@ -1,5 +1,5 @@
 name: coffe_shop_app
-description: Project for Mobile Informatio Systems
+description: Project for Mobile Information Systems
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -46,7 +46,6 @@ dependencies:
   geocoding: ^2.0.5
   flutter_polyline_points: ^1.0.0
   google_directions_api: ^0.9.1
-
   image_picker: ^0.8.6+2
   file_picker: ^5.2.5
 

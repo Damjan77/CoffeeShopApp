@@ -1,11 +1,12 @@
-import 'package:coffe_shop_app/view/order_screen.dart';
+import 'package:coffe_shop_app/controllers/cart_controller.dart';
+import 'package:coffe_shop_app/custom/custom_text_style.dart';
 import 'package:coffe_shop_app/view/profile_screen.dart';
 import 'package:coffe_shop_app/view/coffee_shops_screen.dart';
 import 'package:flutter/material.dart';
-
 import '../custom/custom_app_bar.dart';
-import '../custom/custom_box_widgets.dart';
 import '../model/Coffee.dart';
+import 'map_screen.dart';
+import 'order_screen.dart';
 
 class CartScreen extends StatefulWidget {
   final List<Coffee> _cart;
@@ -13,22 +14,17 @@ class CartScreen extends StatefulWidget {
   CartScreen(this._cart);
 
   @override
-  _CartState createState() => _CartState(this._cart);
+  _CartState createState() => _CartState(_cart);
 }
 
 class _CartState extends State<CartScreen> {
   _CartState(this._cart);
 
+  //CartController cartController = Get.put(CartController());
   double total = 0;
-  List<Coffee> _cart;
+  final List<Coffee> _cart;
   late Coffee item;
 
-  void _updateTotal() {
-    total = 0;
-    for (int i = 0; i < _cart.length; i++) {
-      total += _cart[i].price;
-    }
-  }
 
   Future<void> getOrderedItemData(Coffee item) async {
     debugPrint('Card tapped.');
@@ -42,10 +38,18 @@ class _CartState extends State<CartScreen> {
     item.sugar = dataFromOrder.sugar;
   }
 
+  double updateTotal() {
+    total = 0;
+    for (int i = 0; i < _cart.length; i++) {
+      total += _cart[i].price;
+    }
+    return total;
+  }
+
   @override
   void initState() {
     super.initState();
-    _updateTotal();
+    updateTotal();
   }
 
   @override
@@ -83,11 +87,7 @@ class _CartState extends State<CartScreen> {
                 alignment: Alignment.center,
                 child: const Text(
                   "Your cart is currently empty!",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey,
-                    fontSize: 20,
-                  ),
+                  style: CustomTextStyle.infoTextStyle,
                 ),
               ))
               : Column(
@@ -96,11 +96,7 @@ class _CartState extends State<CartScreen> {
                 padding: EdgeInsets.all(10),
                 child: Text(
                   "CLICK ON YOUR COFFEE TO EDIT IT",
-                  style: TextStyle(
-                    color: primaryColor,
-                    fontSize: 17,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: CustomTextStyle.subtitleTextStyle
                 ),
               ),
               ListView.builder(
@@ -131,7 +127,7 @@ class _CartState extends State<CartScreen> {
                             onTap: () {
                               setState(() {
                                 _cart.remove(item);
-                                _updateTotal();
+                                total = updateTotal();
                               });
                             }),
                       ),
@@ -143,11 +139,7 @@ class _CartState extends State<CartScreen> {
                     alignment: Alignment.bottomRight,
                     child: Text(
                       "TOTAL: " + total.toString() + " MKD",
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: primaryColor,
-                        fontSize: 20,
-                      ),
+                      style: CustomTextStyle.subtitleTextStyle
                     ),
                   ))
             ],
@@ -158,7 +150,7 @@ class _CartState extends State<CartScreen> {
         onPressed: () {
           debugPrint(item.name);
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => CoffeeShopsScreen(),
+            builder: (context) => const MapScreen(),
             settings: RouteSettings(arguments: item),
           ));
         },

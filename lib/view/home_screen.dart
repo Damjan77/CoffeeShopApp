@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../custom/custom_box_widgets.dart';
 import '../services/gallery_service.dart';
-import '../services/logout_controller.dart';
+import '../services/logout_service.dart';
 import 'map_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -19,7 +19,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final LogoutController _logoutController = Get.put(LogoutController());
+  final LogoutService _logoutController = Get.put(LogoutService());
   late String userAddress;
   int _selectedIndex = -1;
   List<Coffee> _coffees = <Coffee>[];

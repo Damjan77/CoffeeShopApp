@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:coffe_shop_app/custom/custom_text_style.dart';
 import 'package:coffe_shop_app/view/order_successfull_screen.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -147,28 +148,19 @@ class _CoffeeShopsScreenState extends State<CoffeeShopsScreen> {
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   textAlign: TextAlign.left,
-                                  style: const TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: primaryColor)),
+                                  style: CustomTextStyle.subtitleTextStyle),
                               addVerticalSpace(5),
                               Text("Location: " + address,
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   textAlign: TextAlign.left,
-                                  style: const TextStyle(
-                                      fontSize: 14,
-                                      fontStyle: FontStyle.italic,
-                                      color: Colors.grey)),
+                                  style: CustomTextStyle.infoTextStyle),
                               addVerticalSpace(5),
                               Text("Rating: " + rating.toString(),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   textAlign: TextAlign.right,
-                                  style: const TextStyle(
-                                      fontSize: 14,
-                                      fontStyle: FontStyle.italic,
-                                      color: Colors.grey)),
+                                  style: CustomTextStyle.infoTextStyle),
                               addVerticalSpace(5),
                             ],
                           ),

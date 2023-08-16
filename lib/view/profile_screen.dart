@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../custom/custom_text_style.dart';
 import '../services/gallery_service.dart';
-import '../services/logout_controller.dart';
+import '../services/logout_service.dart';
 
 class ProfileScreen extends StatefulWidget {
   ProfileScreen();
@@ -19,7 +19,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileState extends State<ProfileScreen> {
   _ProfileState();
 
-  final LogoutController _logoutController = Get.put(LogoutController());
+  final LogoutService _logoutController = Get.put(LogoutService());
   late String userAddress = '';
   var currentUser = FirebaseAuth.instance.currentUser;
 
