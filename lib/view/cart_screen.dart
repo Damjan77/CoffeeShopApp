@@ -1,8 +1,8 @@
 import 'package:coffe_shop_app/controllers/cart_controller.dart';
 import 'package:coffe_shop_app/custom/custom_text_style.dart';
 import 'package:coffe_shop_app/view/profile_screen.dart';
-import 'package:coffe_shop_app/view/coffee_shops_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../custom/custom_app_bar.dart';
 import '../model/Coffee.dart';
 import 'map_screen.dart';
@@ -20,10 +20,9 @@ class CartScreen extends StatefulWidget {
 class _CartState extends State<CartScreen> {
   _CartState(this._cart);
 
-  //CartController cartController = Get.put(CartController());
+  CartController cartController = Get.put(CartController());
   double total = 0;
   final List<Coffee> _cart;
-  late Coffee item;
 
 
   Future<void> getOrderedItemData(Coffee item) async {
@@ -105,19 +104,19 @@ class _CartState extends State<CartScreen> {
                   shrinkWrap: true,
                   itemCount: _cart.length,
                   itemBuilder: (context, index) {
-                    item = _cart[index];
+                    cartController.item = _cart[index];
                     return Card(
                       color: Color.fromRGBO(225, 166, 107, 100),
                       clipBehavior: Clip.hardEdge,
                       elevation: 4.0,
                       child: ListTile(
                         leading: Image.asset(
-                          item.image,
+                          cartController.item.image,
                         ),
-                        title: Text(item.name),
-                        subtitle: Text(item.price.toString() + " MKD"),
+                        title: Text(cartController.item.name),
+                        subtitle: Text(cartController.item.price.toString() + " MKD"),
                         onTap: () async {
-                          getOrderedItemData(item);
+                          getOrderedItemData(cartController.item);
                         },
                         trailing: GestureDetector(
                             child: const Icon(
@@ -126,7 +125,7 @@ class _CartState extends State<CartScreen> {
                             ),
                             onTap: () {
                               setState(() {
-                                _cart.remove(item);
+                                _cart.remove(cartController.item);
                                 total = updateTotal();
                               });
                             }),
@@ -148,11 +147,8 @@ class _CartState extends State<CartScreen> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          debugPrint(item.name);
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => const MapScreen(),
-            settings: RouteSettings(arguments: item),
-          ));
+          debugPrint(cartController.item.name);
+            cartController.sendItemToMapScreen(cartController.item);
         },
         backgroundColor: Color.fromRGBO(225, 166, 107, 100),
         label: Text("PICK A SHOP"),

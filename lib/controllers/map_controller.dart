@@ -1,18 +1,21 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'dart:ui';
+import 'package:coffe_shop_app/controllers/cart_controller.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:coffe_shop_app/model/Map_model.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
+import '../view/order_successfull_screen.dart';
 
 class MapController extends GetxController {
   List<MapModel> mapModel = <MapModel>[].obs;
   var markers = RxSet<Marker>();
   var isLoading = false.obs;
+  final controller = Get.find<CartController>();
 
 
   fetchLocations() async {
@@ -59,9 +62,14 @@ class MapController extends GetxController {
         icon: BitmapDescriptor.fromBytes(markerIcon!),
         position: LatLng(
             element.geometry.location.lat, element.geometry.location.lng),
-        infoWindow: InfoWindow(title: element.name, snippet: element.vicinity),
+        infoWindow: InfoWindow(title: element.name, snippet: element.vicinity,
+        onTap: () {
+          print('info window is tapped');
+          Get.to(() => OrderSuccessfullScreen(shop: element), arguments: controller.item);
+        }),
         onTap: () {
           print('market tapped');
+
         },
       ));
     });

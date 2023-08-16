@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:coffe_shop_app/services/storage_service.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class GalleryController {
