@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'dart:ui' as ui;
 import 'dart:ui';
 import 'package:coffe_shop_app/controllers/cart_controller.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:coffe_shop_app/model/Map_model.dart';
@@ -69,7 +68,6 @@ class MapController extends GetxController {
         }),
         onTap: () {
           print('market tapped');
-
         },
       ));
     });

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:coffe_shop_app/controllers/profile_controller.dart';
 import 'package:coffe_shop_app/custom/custom_app_bar.dart';
 import 'package:coffe_shop_app/custom/custom_box_widgets.dart';
 import 'package:coffe_shop_app/view/login_screen.dart';
@@ -19,6 +20,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileState extends State<ProfileScreen> {
   _ProfileState();
 
+  ProfileController profileController = Get.put(ProfileController());
   final LogoutService _logoutController = Get.put(LogoutService());
   late String userAddress = '';
   var currentUser = FirebaseAuth.instance.currentUser;
@@ -51,20 +53,7 @@ class _ProfileState extends State<ProfileScreen> {
         floatingActionButton: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 0.0),
-              child: FloatingActionButton.extended(
-                heroTag: 'btn1',
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(
-                          builder: (_) => GalleryService()));
-                },
-                backgroundColor: primaryColor,
-                label: Text("OPEN IMAGE GALLERY"),
-                icon: Icon(Icons.camera),
-              ),
-            ),
+            profileController.openGallery(),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: FloatingActionButton.extended(

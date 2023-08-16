@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import '../controllers/map_controller.dart';
 import '../custom/custom_app_bar.dart';
 import '../custom/custom_box_widgets.dart';
-import '../model/Coffee.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen();
@@ -19,7 +18,6 @@ class MapScreen extends StatefulWidget {
 class _MapScreenState extends State<MapScreen> {
   MapController mapController = Get.put(MapController());
   late GoogleMapController _controller;
-  //late dynamic order = ModalRoute.of(context)!.settings.arguments as Coffee;
 
   @override
   void initState() {
@@ -60,7 +58,7 @@ class _MapScreenState extends State<MapScreen> {
               child: GestureDetector(
                 child: Stack(
                   alignment: Alignment.topCenter,
-                  children: <Widget>[
+                  children: const <Widget>[
                     Tooltip(richMessage: TextSpan(
                       text: 'Order to',
                       style: TextStyle(color: Colors.white),

@@ -1,12 +1,15 @@
 import 'dart:convert';
 import 'dart:developer';
+
 import 'package:coffe_shop_app/custom/custom_text_style.dart';
-import 'package:coffe_shop_app/view/order_successfull_screen.dart';
-import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
 import 'package:coffe_shop_app/model/Map_model.dart';
+import 'package:coffe_shop_app/view/cart_screen.dart';
+import 'package:coffe_shop_app/view/home_screen.dart';
 import 'package:coffe_shop_app/view/profile_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+
 import '../custom/custom_app_bar.dart';
 import '../custom/custom_box_widgets.dart';
 import '../model/Coffee.dart';
@@ -22,7 +25,6 @@ class CoffeeShopsScreen extends StatefulWidget {
 
 class _CoffeeShopsScreenState extends State<CoffeeShopsScreen> {
   List<MapModel> mapModel = <MapModel>[].obs;
-  late Coffee order;
 
   _CoffeeShopsScreenState();
 
@@ -31,7 +33,6 @@ class _CoffeeShopsScreenState extends State<CoffeeShopsScreen> {
     super.initState();
     getNearbyPlaces();
   }
-
 
   void getNearbyPlaces() async {
     try {
@@ -55,22 +56,8 @@ class _CoffeeShopsScreenState extends State<CoffeeShopsScreen> {
     }
   }
 
-  // _getOrderedItem(BuildContext context, Widget page) async {
-  //   final dataFromOrderedItem = await Navigator.push(
-  //     context,
-  //     MaterialPageRoute(builder: (context) => page),
-  //   ) as Coffee;
-  //   // Here we have the data from the second screen
-  //   order.name = dataFromOrderedItem.name;
-  //   order.sugar = dataFromOrderedItem.sugar;
-  //   order.milk = dataFromOrderedItem.milk;
-  // }
-
-
   @override
   Widget build(BuildContext context) {
-    final dynamic order = ModalRoute.of(context)!.settings.arguments;
-
     return Scaffold(
       appBar: CustomAppBar(
         appBar: AppBar(),
@@ -107,10 +94,7 @@ class _CoffeeShopsScreenState extends State<CoffeeShopsScreen> {
             return GestureDetector(
               onTap: () {
                 Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => OrderSuccessfullScreen(shop: mapModel[index]),
-                  settings: RouteSettings(arguments: order)),
-                );
+                    MaterialPageRoute(builder: (context) => HomeScreen()));
               },
               child: Card(
                 color: secondaryColor,
@@ -122,22 +106,10 @@ class _CoffeeShopsScreenState extends State<CoffeeShopsScreen> {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Tooltip(
-                          richMessage: TextSpan(
-                            text: 'Click to',
-                            style: TextStyle(color: Colors.white),
-                            children: <InlineSpan>[
-                              TextSpan(
-                                text: ' order from this shop',
-                              ),
-                            ],
-                          ),
-                          decoration: BoxDecoration(color: primaryColor),
-                          child: Icon(
-                            Icons.coffee_rounded,
-                            color: primaryColor,
-                            size: 32,
-                          ),
+                        const Icon(
+                          Icons.coffee_rounded,
+                          color: primaryColor,
+                          size: 32,
                         ),
                         Container(width: 12),
                         Expanded(

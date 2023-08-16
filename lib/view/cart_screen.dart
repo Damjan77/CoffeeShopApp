@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../custom/custom_app_bar.dart';
 import '../model/Coffee.dart';
-import 'map_screen.dart';
-import 'order_screen.dart';
 
 class CartScreen extends StatefulWidget {
   final List<Coffee> _cart;
@@ -23,19 +21,6 @@ class _CartState extends State<CartScreen> {
   CartController cartController = Get.put(CartController());
   double total = 0;
   final List<Coffee> _cart;
-
-
-  Future<void> getOrderedItemData(Coffee item) async {
-    debugPrint('Card tapped.');
-    debugPrint(item.name);
-    final dataFromOrder = await Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => OrderScreen(item)),
-    ) as Coffee;
-    item.name = dataFromOrder.name;
-    item.milk = dataFromOrder.milk;
-    item.sugar = dataFromOrder.sugar;
-  }
 
   double updateTotal() {
     total = 0;
@@ -94,8 +79,8 @@ class _CartState extends State<CartScreen> {
               const Padding(
                 padding: EdgeInsets.all(10),
                 child: Text(
-                  "CLICK ON YOUR COFFEE TO EDIT IT",
-                  style: CustomTextStyle.subtitleTextStyle
+                  "Click on your coffee to edit it",
+                  style: CustomTextStyle.subtitleTextStyle, textAlign: TextAlign.center,
                 ),
               ),
               ListView.builder(
@@ -116,7 +101,7 @@ class _CartState extends State<CartScreen> {
                         title: Text(cartController.item.name),
                         subtitle: Text(cartController.item.price.toString() + " MKD"),
                         onTap: () async {
-                          getOrderedItemData(cartController.item);
+                          cartController.getOrderedItemData(cartController.item);
                         },
                         trailing: GestureDetector(
                             child: const Icon(
