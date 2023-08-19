@@ -20,7 +20,7 @@ class _CartState extends State<CartScreen> {
 
   CartController cartController = Get.put(CartController());
   double total = 0;
-  final List<Coffee> _cart;
+  List<Coffee> _cart = <Coffee>[].obs;
 
   double updateTotal() {
     total = 0;
@@ -133,7 +133,7 @@ class _CartState extends State<CartScreen> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           debugPrint(cartController.item.name);
-            cartController.sendItemToMapScreen(cartController.item);
+            cartController.sendItemToMapScreen(_cart);
         },
         backgroundColor: Color.fromRGBO(225, 166, 107, 100),
         label: Text("PICK A SHOP"),

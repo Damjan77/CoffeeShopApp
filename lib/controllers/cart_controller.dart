@@ -19,7 +19,7 @@ class CartController extends GetxController {
     item.sugar = dataFromOrder.sugar;
   }
 
-  sendItemToMapScreen(item) {
-    Get.to(() => const MapScreen(), arguments: item);
+  sendItemToMapScreen(List<Coffee> _cart) {
+    Get.to(() =>  const MapScreen(), arguments: _cart);
   }
 }

@@ -16,6 +16,8 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
+  _MapScreenState();
+
   MapController mapController = Get.put(MapController());
   late GoogleMapController _controller;
 

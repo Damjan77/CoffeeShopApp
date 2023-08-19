@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:coffe_shop_app/model/Coffee.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,7 +12,7 @@ class OrderScreen extends StatefulWidget {
   OrderScreen(this._item);
 
   @override
-  _OrderState createState() => _OrderState(this._item);
+  _OrderState createState() => _OrderState(_item);
 }
 
 class _OrderState extends State<OrderScreen> {
@@ -21,6 +20,7 @@ class _OrderState extends State<OrderScreen> {
   _OrderState(this._item);
 
   final Coffee _item;
+  List<Coffee> _cartList = <Coffee>[].obs;
 
   void increaseSugarQuantity() {
     setState(() {
@@ -55,7 +55,10 @@ class _OrderState extends State<OrderScreen> {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingActionButton.extended(
-          onPressed:  () { Navigator.pop(context, _item); },
+          onPressed:  () {
+            _cartList.add(_item);
+            Navigator.pop(context, _item);
+            },
           backgroundColor: primaryColor,
           label: const Text("DONE"),
           icon: Icon(Icons.done),

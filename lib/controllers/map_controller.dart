@@ -14,7 +14,8 @@ class MapController extends GetxController {
   List<MapModel> mapModel = <MapModel>[].obs;
   var markers = RxSet<Marker>();
   var isLoading = false.obs;
-  final controller = Get.find<CartController>();
+  final cartController = Get.find<CartController>();
+  var passedArguments = Get.arguments;
 
 
   fetchLocations() async {
@@ -64,7 +65,7 @@ class MapController extends GetxController {
         infoWindow: InfoWindow(title: element.name, snippet: element.vicinity,
         onTap: () {
           print('info window is tapped');
-          Get.to(() => OrderSuccessfullScreen(shop: element), arguments: controller.item);
+          Get.to(() => OrderSuccessfullScreen(shop: element), arguments: passedArguments);
         }),
         onTap: () {
           print('market tapped');
