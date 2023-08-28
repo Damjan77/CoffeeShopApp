@@ -12,15 +12,16 @@ class CartScreen extends StatefulWidget {
   CartScreen(this._cart);
 
   @override
-  _CartState createState() => _CartState(_cart);
+  _CartState createState() => _CartState(this._cart);
 }
 
 class _CartState extends State<CartScreen> {
-  _CartState(this._cart);
-
-  CartController cartController = Get.put(CartController());
   double total = 0;
   List<Coffee> _cart = <Coffee>[].obs;
+  CartController cartController = Get.put(CartController());
+
+  _CartState(this._cart);
+
 
   double updateTotal() {
     total = 0;
@@ -89,19 +90,21 @@ class _CartState extends State<CartScreen> {
                   shrinkWrap: true,
                   itemCount: _cart.length,
                   itemBuilder: (context, index) {
-                    cartController.item = _cart[index];
+                    var item = _cart[index];
                     return Card(
                       color: Color.fromRGBO(225, 166, 107, 100),
                       clipBehavior: Clip.hardEdge,
                       elevation: 4.0,
                       child: ListTile(
                         leading: Image.asset(
-                          cartController.item.image,
+                          item.image,
                         ),
-                        title: Text(cartController.item.name),
-                        subtitle: Text(cartController.item.price.toString() + " MKD"),
+                        title: Text(item.name),
+                        subtitle: Text(item.price.toString() + " MKD"),
                         onTap: () async {
-                          cartController.getOrderedItemData(cartController.item);
+                           setState(() {
+                            cartController.getOrderedItemData(item);
+                           });
                         },
                         trailing: GestureDetector(
                             child: const Icon(
@@ -110,7 +113,7 @@ class _CartState extends State<CartScreen> {
                             ),
                             onTap: () {
                               setState(() {
-                                _cart.remove(cartController.item);
+                                _cart.remove(item);
                                 total = updateTotal();
                               });
                             }),
@@ -132,7 +135,6 @@ class _CartState extends State<CartScreen> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          debugPrint(cartController.item.name);
             cartController.sendItemToMapScreen(_cart);
         },
         backgroundColor: Color.fromRGBO(225, 166, 107, 100),

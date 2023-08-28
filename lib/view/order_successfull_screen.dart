@@ -2,7 +2,7 @@
 import 'package:coffe_shop_app/custom/custom_app_bar.dart';
 import 'package:coffe_shop_app/custom/custom_text_style.dart';
 import 'package:coffe_shop_app/model/Coffee.dart';
-import 'package:coffe_shop_app/model/Map_model.dart';
+import 'package:coffe_shop_app/model/Shop.dart';
 import 'package:coffe_shop_app/view/home_screen.dart';
 import 'package:flutter/material.dart';
 import '../custom/custom_box_widgets.dart';
@@ -12,7 +12,7 @@ class OrderSuccessfullScreen extends StatefulWidget {
 
   OrderSuccessfullScreen({super.key, required this.shop});
 
-  final MapModel shop;
+  final Shop shop;
 
   @override
   State<OrderSuccessfullScreen> createState() => _OrderSuccessfullScreenState();
@@ -109,7 +109,7 @@ class _OrderSuccessfullScreenState extends State<OrderSuccessfullScreen> {
                                                 style: CustomTextStyle
                                                     .subtitleTextStyle),
                                             addVerticalSpace(10),
-                                            Text("Milk: ${item.milk ? "yes" : "no"}",
+                                            Text("Milk: ${item.milk ? "✔️" : "❌"}", //stiklata da bide zelena!
                                                 overflow: TextOverflow.ellipsis,
                                                 textAlign: TextAlign.left,
                                                 style: CustomTextStyle.infoTextStyle),

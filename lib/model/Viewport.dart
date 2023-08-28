@@ -1,14 +1,14 @@
-import 'package:coffe_shop_app/model/Location.dart';
+import 'package:coffe_shop_app/model/Coordinates.dart';
 
 class Viewport {
-  late final Location northeast;
-  late final Location southwest;
+  late final Coordinates northeast;
+  late final Coordinates southwest;
 
   Viewport({required this.northeast, required this.southwest});
 
   Viewport.fromJson(Map<String, dynamic> json) {
-    northeast = Location.fromJson(json['northeast']);
-    southwest = Location.fromJson(json['southwest']);
+    northeast = Coordinates.fromJson(json['northeast']);
+    southwest = Coordinates.fromJson(json['southwest']);
   }
 
   Map<String, dynamic> toJson() {

@@ -1,8 +1,8 @@
-import 'Geometry.dart';
+import 'Location.dart';
 
-class MapModel {
+class Shop {
   late final String businessStatus;
-  late final Geometry geometry;
+  late final Location geometry;
   late final String icon;
   late final String iconBackgroundColor;
   late final String iconMaskBaseUri;
@@ -16,7 +16,7 @@ class MapModel {
   late final int userRatingsTotal;
   late final String vicinity;
 
-  MapModel(
+  Shop(
       {required this.businessStatus,
       required this.geometry,
       required this.icon,
@@ -32,9 +32,9 @@ class MapModel {
       required this.userRatingsTotal,
       required this.vicinity});
 
-  MapModel.fromJson(Map<String, dynamic> json) {
+  Shop.fromJson(Map<String, dynamic> json) {
     businessStatus = json['business_status'];
-    geometry = Geometry.fromJson(json['geometry']);
+    geometry = Location.fromJson(json['geometry']);
     icon = json['icon'];
     iconBackgroundColor = json['icon_background_color'];
     iconMaskBaseUri = json['icon_mask_base_uri'];

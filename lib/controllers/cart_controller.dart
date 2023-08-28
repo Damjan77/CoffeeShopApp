@@ -5,7 +5,6 @@ import '../view/map_screen.dart';
 import '../view/order_screen.dart';
 
 class CartController extends GetxController {
-  late Coffee item;
 
   Future<void> getOrderedItemData(Coffee item) async {
     debugPrint('Card tapped.');

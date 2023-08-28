@@ -5,13 +5,13 @@ import 'dart:ui';
 import 'package:coffe_shop_app/controllers/cart_controller.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:coffe_shop_app/model/Map_model.dart';
+import 'package:coffe_shop_app/model/Shop.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 import '../view/order_successfull_screen.dart';
 
 class MapController extends GetxController {
-  List<MapModel> mapModel = <MapModel>[].obs;
+  List<Shop> mapModel = <Shop>[].obs;
   var markers = RxSet<Marker>();
   var isLoading = false.obs;
   final cartController = Get.find<CartController>();
@@ -28,7 +28,7 @@ class MapController extends GetxController {
         var result = jsonDecode(response.body);
         log(result.toString());
         mapModel.addAll(RxList<Map<String, dynamic>>.from(result["results"])
-            .map((e) => MapModel.fromJson(e))
+            .map((e) => Shop.fromJson(e))
             .toList());
       } else {
         print('error fetching data');
@@ -61,7 +61,7 @@ class MapController extends GetxController {
         markerId: MarkerId(element.placeId.toString()),
         icon: BitmapDescriptor.fromBytes(markerIcon!),
         position: LatLng(
-            element.geometry.location.lat, element.geometry.location.lng),
+            element.geometry.coordinates.lat, element.geometry.coordinates.lng),
         infoWindow: InfoWindow(title: element.name, snippet: element.vicinity,
         onTap: () {
           print('info window is tapped');

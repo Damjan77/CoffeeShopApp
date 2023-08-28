@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:coffe_shop_app/custom/custom_text_style.dart';
-import 'package:coffe_shop_app/model/Map_model.dart';
+import 'package:coffe_shop_app/model/Shop.dart';
 import 'package:coffe_shop_app/view/cart_screen.dart';
 import 'package:coffe_shop_app/view/home_screen.dart';
 import 'package:coffe_shop_app/view/profile_screen.dart';
@@ -24,7 +24,7 @@ class CoffeeShopsScreen extends StatefulWidget {
 }
 
 class _CoffeeShopsScreenState extends State<CoffeeShopsScreen> {
-  List<MapModel> mapModel = <MapModel>[].obs;
+  List<Shop> mapModel = <Shop>[].obs;
 
   _CoffeeShopsScreenState();
 
@@ -43,7 +43,7 @@ class _CoffeeShopsScreenState extends State<CoffeeShopsScreen> {
         var result = jsonDecode(response.body);
         log(result.toString());
         mapModel.addAll(RxList<Map<String, dynamic>>.from(result["results"])
-            .map((e) => MapModel.fromJson(e))
+            .map((e) => Shop.fromJson(e))
             .toList());
       } else {
         print('error fetching data');

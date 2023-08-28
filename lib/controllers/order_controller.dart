@@ -1,19 +1,19 @@
 import 'package:get/get.dart';
-import '../model/Coffee.dart';
 
 class OrderController extends GetxController{
+  var item = Get.arguments;
 
-  void increaseSugar(Coffee item) {
+  void increaseSugar( item) {
       item.sugar += 1;
   }
 
-  void decreaseSugar(Coffee item) {
+  void decreaseSugar( item) {
       if (item.sugar > 0) {
         item.sugar -= 1;
       }
   }
 
-  void milk(Coffee item) {
+  void milk( item) {
       if (item.milk) {
         item.milk = false;
       } else {
