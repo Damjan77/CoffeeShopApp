@@ -2,12 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coffe_shop_app/controllers/profile_controller.dart';
 import 'package:coffe_shop_app/custom/custom_app_bar.dart';
 import 'package:coffe_shop_app/custom/custom_box_widgets.dart';
-import 'package:coffe_shop_app/view/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../custom/custom_text_style.dart';
-import '../services/gallery_service.dart';
 import '../services/logout_service.dart';
 
 class ProfileScreen extends StatefulWidget {

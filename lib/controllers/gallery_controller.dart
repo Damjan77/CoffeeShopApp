@@ -14,7 +14,7 @@ class GalleryController {
         'AaBbCcDdlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1EeFfGgHhIiJjKkL234567890';
     final randomString = List.generate(lengthOfString,
             (index) => allChars[random.nextInt(allChars.length)]).join();
-    return randomString; // return the generated string
+    return randomString;
   }
 
 
@@ -36,6 +36,4 @@ class GalleryController {
     });
     return files;
   }
-
-
 }

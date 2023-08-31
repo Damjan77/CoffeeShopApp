@@ -3,7 +3,6 @@ import 'dart:developer';
 
 import 'package:coffe_shop_app/custom/custom_text_style.dart';
 import 'package:coffe_shop_app/model/Shop.dart';
-import 'package:coffe_shop_app/view/cart_screen.dart';
 import 'package:coffe_shop_app/view/home_screen.dart';
 import 'package:coffe_shop_app/view/profile_screen.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +11,6 @@ import 'package:http/http.dart' as http;
 
 import '../custom/custom_app_bar.dart';
 import '../custom/custom_box_widgets.dart';
-import '../model/Coffee.dart';
 
 class CoffeeShopsScreen extends StatefulWidget {
   static const String idScreen = "mapScreen";
