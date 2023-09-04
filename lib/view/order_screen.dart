@@ -12,7 +12,7 @@ class OrderScreen extends StatefulWidget {
   OrderScreen(this._item);
 
   @override
-  _OrderState createState() => _OrderState(_item);
+  _OrderState createState() => _OrderState(this._item);
 }
 
 class _OrderState extends State<OrderScreen> {
@@ -24,6 +24,14 @@ class _OrderState extends State<OrderScreen> {
 
   Expanded expandedWidgetEmpty() {
     return const Expanded(child: Text(''));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    orderController.init(item);
+    // orderController.increaseSugar(this.item);
+    // orderController.decreaseSugar(this.item);
   }
 
   @override
@@ -76,7 +84,7 @@ class _OrderState extends State<OrderScreen> {
                         ),
                         onTap: () {
                           setState(() {
-                            orderController.decreaseSugar(item);
+                            orderController.decreaseSugar();
                           });
                         },
                       ),
@@ -100,7 +108,7 @@ class _OrderState extends State<OrderScreen> {
                         ),
                         onTap: () {
                           setState(() {
-                            orderController.increaseSugar(item);
+                            orderController.increaseSugar();
                           });
                         },
                       ),
@@ -124,7 +132,7 @@ class _OrderState extends State<OrderScreen> {
                       activeColor: primaryColor,
                       onChanged: (bool value) {
                         setState(() {
-                          orderController.milk(item);
+                          orderController.toggleMilk();
                         });
                       },
                     ),
