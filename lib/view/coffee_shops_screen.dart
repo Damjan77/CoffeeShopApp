@@ -35,7 +35,7 @@ class _CoffeeShopsScreenState extends State<CoffeeShopsScreen> {
   void getNearbyPlaces() async {
     try {
       http.Response response = await http.get(Uri.tryParse(
-          'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=42.00478491557928,21.40917442067392&radius=3000&types=cafe&keyword=specialty&key=AIzaSyDzS5EdV9zNC08WSitS09Jw-YD_s7Fs398')!);
+          'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=42.00478491557928,21.40917442067392&radius=5000&types=cafe&keyword=specialty&key=AIzaSyDzS5EdV9zNC08WSitS09Jw-YD_s7Fs398')!);
       if (response.statusCode == 200) {
         ///data successfully
         var result = jsonDecode(response.body);

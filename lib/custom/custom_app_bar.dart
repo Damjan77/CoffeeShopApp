@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -24,16 +23,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               bottomLeft: Radius.circular(20),
               bottomRight: Radius.circular(20)),
           color: Color(0xFF7B5B36),
-        ),
-      ),
+        )),
       actions: widgets,
       leading: GestureDetector(
         child: Icon(Icons.arrow_back_ios),
         onTap: () {
           Navigator.pop(context);
-        },
-      ),
-    );
+        }));
   }
 
   @override
