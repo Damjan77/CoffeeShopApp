@@ -9,14 +9,14 @@ import '../custom/custom_text_style.dart';
 class OrderScreen extends StatefulWidget {
   final Coffee _item;
 
-  OrderScreen(this._item);
+  OrderScreen(this._item, {super.key});
 
   @override
   _OrderState createState() => _OrderState(this._item);
 }
 
 class _OrderState extends State<OrderScreen> {
-  final Coffee item;
+  late final Coffee item;
   List<Coffee> _cartList = <Coffee>[].obs;
   final orderController = Get.put(OrderController());
 
@@ -29,9 +29,6 @@ class _OrderState extends State<OrderScreen> {
   @override
   void initState() {
     super.initState();
-    orderController.init(item);
-    // orderController.increaseSugar(this.item);
-    // orderController.decreaseSugar(this.item);
   }
 
   @override
@@ -56,7 +53,7 @@ class _OrderState extends State<OrderScreen> {
             padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
             child: Column(children: <Widget>[
               Image.asset(
-                item.image,
+                widget._item.image,
                 height: 150,
               ),
               Text(
@@ -83,9 +80,8 @@ class _OrderState extends State<OrderScreen> {
                           color: primaryColor,
                         ),
                         onTap: () {
-                          setState(() {
-                            orderController.decreaseSugar();
-                          });
+                          orderController.decreaseSugar(item);
+                          setState(() {});
                         },
                       ),
                     ),
@@ -107,8 +103,8 @@ class _OrderState extends State<OrderScreen> {
                           color: primaryColor,
                         ),
                         onTap: () {
+                          orderController.increaseSugar(item);
                           setState(() {
-                            orderController.increaseSugar();
                           });
                         },
                       ),
@@ -131,9 +127,8 @@ class _OrderState extends State<OrderScreen> {
                       value: item.milk,
                       activeColor: primaryColor,
                       onChanged: (bool value) {
-                        setState(() {
-                          orderController.toggleMilk();
-                        });
+                        orderController.toggleMilk(item);
+                        setState(() {});
                       },
                     ),
                   ),
@@ -167,9 +162,9 @@ class _OrderState extends State<OrderScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          setState(() {
-            _cartList.add(item);
-          });
+            setState(() {
+              _cartList.add(item);
+            });
           Navigator.pop(context, item);
         },
         backgroundColor: primaryColor,

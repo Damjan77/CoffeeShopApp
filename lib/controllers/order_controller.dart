@@ -2,26 +2,20 @@ import 'package:coffe_shop_app/model/Coffee.dart';
 import 'package:get/get.dart';
 
 class OrderController extends GetxController{
-  //var item = Get.arguments;
-  late Coffee item;
 
-  void init(Coffee coffee) {
-    item = coffee;
-  }
-
-  void increaseSugar() {
+  void increaseSugar(Coffee item) {
     if (item.sugar < 10) {
       item.sugar++;
     }
   }
 
-  void decreaseSugar() {
+  void decreaseSugar(Coffee item) {
     if (item.sugar > 0) {
       item.sugar--;
     }
   }
 
-  void toggleMilk() {
+  void toggleMilk(Coffee item) {
     item.milk = !item.milk;
   }
 }

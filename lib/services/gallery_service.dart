@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import '../controllers/gallery_controller.dart';
+import '../custom/custom_string.dart';
 import './storage_service.dart';
 
 
@@ -35,7 +36,7 @@ class _GalleryServiceState extends State<GalleryService> {
       return null;
     }
     final path = imageFile!.path;
-    final fileName = galleryController.generateRandomString(5);
+    final fileName = generateRandomString(5);
     storage.uploadFile(path, fileName).then((value) => print('Done'));
   }
 

@@ -7,6 +7,7 @@ import 'package:coffe_shop_app/view/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../custom/custom_box_widgets.dart';
+import '../custom/custom_string.dart';
 import '../services/gallery_service.dart';
 import '../services/logout_service.dart';
 import 'coffee_shops_screen.dart';
@@ -28,36 +29,42 @@ class _HomeScreenState extends State<HomeScreen> {
   void _populateCoffees() {
     var list = <Coffee>[
       Coffee(
+          id: generateRandomString(3),
           name: 'Espresso',
           price: 60,
           image: 'assets/images/espresso.png',
           sugar: 0,
           milk: false),
       Coffee(
+          id: generateRandomString(3),
           name: 'Macchiato',
           price: 60,
           image: 'assets/images/machiato.png',
           sugar: 0,
           milk: false),
       Coffee(
+          id: generateRandomString(3),
           name: 'Cappuccino',
           price: 80,
           image: 'assets/images/cappuccino.png',
           sugar: 0,
           milk: false),
       Coffee(
+          id: generateRandomString(3),
           name: 'Iced Coffee',
           price: 100,
           image: 'assets/images/iced-coffee.png',
           sugar: 0,
           milk: false),
       Coffee(
+          id: generateRandomString(3),
           name: 'Double Espresso',
           price: 100,
           image: 'assets/images/espresso.png',
           sugar: 0,
           milk: false),
       Coffee(
+          id: generateRandomString(3),
           name: 'Affogato',
           price: 90,
           image: 'assets/images/affogato.png',
